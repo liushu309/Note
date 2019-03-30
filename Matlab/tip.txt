@@ -1,0 +1,13 @@
+1. Ubuntu通常方式启动
+  1> 制作如下快捷方式：
+	#!/usr/bin/env xdg-open
+	[Desktop Entry]
+	Name=matlab
+	Comment=matlab
+	Exec=/usr/local/MATLAB/R2016b/bin/matlab
+	Terminal=true
+	Type=Application
+	Icon=/usr/local/MATLAB/R2016b/toolbox/shared/dastudio/resources/MatlabIcon.png
+	Categories=Application;
+  2> 修改文件归属
+	sudo chown [username] -R ~/.matlab/
