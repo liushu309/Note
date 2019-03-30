@@ -1,4 +1,4 @@
-1. 连接github
+## 连接github
   1> sudo apt-get install openssh-server openssh-client
   2> sudo apt-get install git-core
   3> ssh-keygen -C '670602937@qq.com' -t rsa
