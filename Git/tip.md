@@ -22,3 +22,15 @@
     git pull origin master  
   再由本地更新github，可以使用  
     git push origin master  
+    
+## push时出现输入用户名密码
+  因为与github连接的传输协议不一样，可能是https协议会出现这个问题
+  ### 1. 查看连接方式
+    git remote -v
+    out:
+    origin	https://github.com/liushu309/Note.git (fetch)
+    origin	https://github.com/liushu309/Note.git (push)
+  ### 2. 重新设置
+    git remote rm origin
+    git remote add origin git@github.com:username/repository.git
+    git push -u origin master
