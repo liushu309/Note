@@ -6,3 +6,19 @@
   5> git config --global user.name "your name"  
      git config --global user.email "your email"  
   6> 测试：ssh -v git@github.com  
+  
+## 本地连接连接github
+  1> github上创建一个仓库，地址 https://github.com/liushu309/test.git  
+  2> 在本地上生成一个仓库，可以  
+    git clone git@github.com:nanfei9330/xx.git  
+  或者进入一个新的目录  
+    git init  
+  3> 关联  
+    git remote add origin git@github.com/liushu309/test.git  
+  4> 推送master分支的所有内容  
+    git push -u origin master  
+  第二次推送时，可以不用-u  
+  5> 取回远程主机某个分支的更新  
+    git pull origin master  
+  再由本地更新github，可以使用  
+    git push origin master  
