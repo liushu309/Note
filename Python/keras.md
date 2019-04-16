@@ -1,5 +1,6 @@
-1. keras限定内存和指定gpu型号
-  keras默认会占满gpu
+### 1. keras限定内存和指定gpu型号
+keras默认会占满gpu
+
     import os
     os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
