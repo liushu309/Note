@@ -24,3 +24,36 @@
         
     out:
     10
+
+## 3. TensorArray
+TensorArray动态张量数组，通常都是跟while_loop或map_fn结合使用
+
+    import tensorflow as tf
+
+    def condition(time, output_ta_l):
+        return tf.less(time, 3)
+
+    def body(time, output_ta_l):
+        output_ta_l = output_ta_l.write(time, [2.4, 3.5])
+        return time + 1, output_ta_l
+
+    time = tf.constant(0)
+    output_ta = tf.TensorArray(dtype=tf.float32, size=10, dynamic_size=True)
+
+    result = tf.while_loop(condition, body, loop_vars=[time, output_ta])
+
+    last_time, last_out = result
+
+    final_out = last_out.stack()
+
+    with tf.Session():
+        print(last_time.eval())
+        print(final_out.eval())
+    out:
+    3
+    [[2.4 3.5]
+     [2.4 3.5]
+     [2.4 3.5]]
+     
+### TensorArray.stack(name=None) 
+将TensorArray中元素叠起来当做一个Tensor输出
