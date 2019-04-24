@@ -6,7 +6,7 @@
     export LC_ALL=en_US.UTF-8 
 
 ## 2. tf.while_loop()
-将第三个参数依次放入cond中，根据结果判断是否执行body，如果执行完body后，将结果返回给变量，再次重复上述过程？使用示例：  
+将第三个参数依次放入cond中，根据结果判断是否执行body，如果执行完body后，将结果返回给变量，再次重复上述过程。cond和body的参数表必须相同。使用示例：  
 
     import tensorflow as tf 
     
