@@ -69,7 +69,9 @@ np.random.shuffle(x)会直接对x进行操作,函数返回值为None,x的内容�
     predictor = dlib.shape_predictor(
         "C:\\Python36\\Lib\\site-packages\\dlib-data\\shape_predictor_68_face_landmarks.dat"
     )
-
+    # The 1 in the second argument indicates that we should upsample the image
+    # 1 time.  This will make everything bigger and allow us to detect more
+    # faces.
     dets = detector(gray, 1)
     for face in dets:
         shape = predictor(img, face)  # 寻找人脸的68个标定点
