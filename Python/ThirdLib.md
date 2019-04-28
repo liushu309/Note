@@ -1,11 +1,18 @@
 # numpy
-## 1. np.expand_dims(a, axis=0)
+## 1. 扩充数据维度
+### 方法1. np.expand_dims(a, axis=0)
 表示在0轴添加数据,转换结果如下
 
     a = np.array([1, 2, 3])
     b = np.expand_dims(a, axis=0)
     b
     array([[1, 2, 3]])
+### 方法2. np.newaxis
+    x = np.random.randint(1, 8, size=5)
+    #array([4, 6, 6, 6, 5])
+    x1 = x[np.newaxis, :]
+    x1
+    #array([[4, 6, 6, 6, 5]])
     
 ## 2. 掩码赋值？
 ### code
