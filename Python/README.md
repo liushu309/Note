@@ -8,7 +8,7 @@
     rootpath = str(os.path.dirname(os.path.abspath(__file__)))
     sys.path.append(rootpath)
     
-### 3. python “...”操作符
+## 3. python “...”操作符
 在Python中，“...”(ellipsis)操作符，表示其他维度不变，只操作最前或最后1维
 
     import numpy as np
@@ -20,7 +20,7 @@
     """[[5 6 7 8]]"""
     print(y)
 
-### 4. python "::-1"
+## 4. python "::-1"
 “::-1”是颠倒数组的值，例如：  
 
     import numpy as np
@@ -28,3 +28,12 @@
     a = np.array([1, 2, 3, 4, 5])
     print a[::-1]
     """[5 4 3 2 1]"""
+
+## @classmethod和@staticmethod
+### @classmethod    
+　　1. classmethod 是一个装饰器函数，用来标示一个方法为类方法    
+　　2. 类方法的第一个参数是类对象参数，在方法被调用的时候自动将类对象传入，参数名称约定为cls  
+　　3. 如果一个方法被标示为类方法，则该方法可被类对象调用(如 C.f())，也可以被类的实例对象调用(如 C().f())  
+    4. 类被继承后，子类也可以调用父类的类方法，但是第一个参数传入的是子类的类对象     
+### @staticmethod    
+   Class methods are different than C++ or Java static methods. If you want those, see staticmethod() in this section.
