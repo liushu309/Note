@@ -29,7 +29,7 @@
     print a[::-1]
     """[5 4 3 2 1]"""
 
-## @classmethod和@staticmethod
+## 5. @classmethod和@staticmethod
 ### @classmethod    
 　　1. classmethod 是一个装饰器函数，用来标示一个方法为类方法    
 　　2. 类方法的第一个参数是类对象参数，在方法被调用的时候自动将类对象传入，参数名称约定为cls  
@@ -37,3 +37,20 @@
     4. 类被继承后，子类也可以调用父类的类方法，但是第一个参数传入的是子类的类对象     
 ### @staticmethod    
    Class methods are different than C++ or Java static methods. If you want those, see staticmethod() in this section.
+   
+## 6. __dict__()
+对象的__dict__()和类的__dict__()方法不同,对象的只是对象的属性,类的还有一些其它的信息    
+
+    class A:
+        some = 1
+        def __init__(self,num):
+            self.num = num
+    a = A(10)
+
+    print(a.__dict__)
+    #out {'num': 10}
+    a.liushu = 10
+    print(a.__dict__)
+    #out {'num': 10, 'liushu': 10}
+    print(A.__dict__)
+    #out {'__module__': '__main__', 'some': 1, '__init__': <function A.__init__ at 0x7f066a86a1e0>, '__dict__': <attribute '__dict__' of 'A' objects>,'__weakref__': <attribute '__weakref__' of 'A' objects>, '__doc__': None}
