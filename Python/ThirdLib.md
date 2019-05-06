@@ -90,3 +90,17 @@ np.random.shuffle(x)会直接对x进行操作,函数返回值为None,x的内容�
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+
+# logging
+对打印的信息以级别来划分,根据在程序开头设置的级别,来打印适当级别的信息
+
+    import logging
+    # level=logging.WARNING和level=logging.INFO,输出打印信息数量不一样
+    logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logger = logging.getLogger(__name__)
+
+    logger.info('This is a log info')
+    logger.debug('Debugging')
+    logger.warning('Warning exists')
+    logger.info('Finish')
