@@ -23,23 +23,9 @@
   在Psensor中设置开机启动
   在Sensor Preferences中设置显示项 Application indicator Display sensor in the label
 
-## 7. vim
-  [shift + v]: 行选择
-  [Ctrl + v]: 块选择
-  y: 选择
-  d: 删除
-  p: 粘贴
-  [Ctrl + s]: 锁
-  [Ctrl + q]: 解锁
-  [Ctrl + f]: 向下翻页
-  [Ctrl + b]: 向后翻页
-  1> 在一个窗口打开多个文件
-    [:sp{filename}]: 再打开一个窗口，没有filename时，打开为同一个窗口
-    [Ctrl + w + "上"\"下"]: 在两个窗口之间切换
-
-## 8. 实时查看gpu占用率
+## 7. 实时查看gpu占用率
   watch -n 10 nvidia-smi
   
-## 9. commond >out.txt 2>&1
+## 8. commond >out.txt 2>&1
 0:标准输入, 1: 标准输出, 2:标准错误输出
 将标准错误输出 重定向到 标准输出中,&的作用是使1不是文件名,而是标准输出1
