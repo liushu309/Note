@@ -35,6 +35,12 @@
     git remote add origin git@github.com:username/repository.git
     git push -u origin master
 
+## 4. 创建服务器
+1. 创建仓库
+
+    $ git init --bare liushu.git
+2. 在 ~/.ssh/authorized_keys加入访问电脑的id_rsa.pub文件 
+
 ## 4. 概念
 ### 1. git status -s 中的状态字母
 新添加的未跟踪文件前面有 ?? 标记，  
@@ -43,10 +49,16 @@
 M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改了但是还没放入暂存区，出现在靠左边的 M 表示该文件被修改了并放入了暂存区。
 
 ### 2. 撤销操作
-1. 取消暂存的文件  
+1. 还没 $ git add file 
 
     $ git reset HEAD <filename> 
 
-2. 撤消对文件的修改(从暂存区重置)
+2. 已经$ git add file, 但是没有 git commit -m "", 分两步操作
 
     $ git checkout -- <filename>
+    $ git  status
+    $ git checkout -- file
+3. 从以前版本前进到后来版本
+    
+    $ git reflog  
+    $ git reset --hard <edit_id>
