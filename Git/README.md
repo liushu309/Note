@@ -1,4 +1,4 @@
-## 连接github
+## 1. 连接github
     1> sudo apt-get install openssh-server openssh-client  
     2> sudo apt-get install git-core  
     3> ssh-keygen -C '670602937@qq.com' -t rsa  
@@ -7,7 +7,7 @@
        git config --global user.email "your email"  
     6> 测试：ssh -v git@github.com  
   
-## 本地连接连接github
+## 2. 本地连接连接github
     1> github上创建一个仓库，地址 https://github.com/liushu309/test.git  
     2> 在本地上生成一个仓库，可以  
       git clone git@github.com:nanfei9330/xx.git  
@@ -23,14 +23,30 @@
     再由本地更新github，可以使用  
       git push origin master  
     
-## push时出现输入用户名密码
+## 3. push时出现输入用户名密码
   因为与github连接的传输协议不一样，可能是https协议会出现这个问题
   ### 1. 查看连接方式
     git remote -v
     out:
     origin	https://github.com/liushu309/Note.git (fetch)
     origin	https://github.com/liushu309/Note.git (push)
-  ### 2. 重新设置
+  ### 2. 重新设置ssh协议连接
     git remote rm origin
     git remote add origin git@github.com:username/repository.git
     git push -u origin master
+
+## 4. 概念
+### 1. git status -s 中的状态字母
+新添加的未跟踪文件前面有 ?? 标记，  
+新添加到暂存区中的文件前面有 A 标记，  
+修改过的文件前面有 M 标记,  
+M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改了但是还没放入暂存区，出现在靠左边的 M 表示该文件被修改了并放入了暂存区。
+
+### 2. 撤销操作
+1. 取消暂存的文件  
+
+    $ git reset HEAD <filename> 
+
+2. 撤消对文件的修改(从暂存区重置)
+
+    $ git checkout -- <filename>
