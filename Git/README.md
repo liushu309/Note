@@ -51,14 +51,18 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
 ### 2. 撤销操作
 1. 还没 $ git add file 
 
-    $ git reset HEAD <filename> 
+        $ git reset HEAD <filename> 
 
 2. 已经$ git add file, 但是没有 git commit -m "", 分两步操作
 
-    $ git checkout -- <filename>
-    $ git  status
-    $ git checkout -- file
+        $ git checkout -- <filename>
+        $ git  status
+        $ git checkout -- file
 3. 从以前版本前进到后来版本
-    
-    $ git reflog  
-    $ git reset --hard <edit_id>
+
+        $ git reflog  
+        $ git reset --hard <edit_id>
+
+### 3. git push 和git pull
+    $ git push <远程主机名> <本地分支名>  <远程分支名>
+    $ git pull <远程主机名> <远程分支名>:<本地分支名>
