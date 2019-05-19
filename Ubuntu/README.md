@@ -47,6 +47,9 @@
 ## 11. 全绿色背景文件
 全绿色高亮背景，如图  
 <p align="center">
-  <img src="../Image/folder_height_light.jpeg" alt="samples" width="400px">
+  <img src="../Image/folder_height_light.png" alt="samples" width="600px">
 </p>  
 含义: 文件夹的权限全部开放，比如777, 可用chmod改变
+
+
+
