@@ -104,3 +104,15 @@ np.random.shuffle(x)会直接对x进行操作,函数返回值为None,x的内容�
     logger.debug('Debugging')
     logger.warning('Warning exists')
     logger.info('Finish')
+
+
+# functools
+## reduce
+    from functools import reduce
+
+    def add(x, y):
+        return x+y
+
+    reduce(add, [1,2,3,4])
+    
+上面这段 reduce 代码，其实就相当于 1 + 2 + 3 + 4 = 10
