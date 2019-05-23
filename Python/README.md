@@ -54,3 +54,11 @@
     #out {'num': 10, 'liushu': 10}
     print(A.__dict__)
     #out {'__module__': '__main__', 'some': 1, '__init__': <function A.__init__ at 0x7f066a86a1e0>, '__dict__': <attribute '__dict__' of 'A' objects>,'__weakref__': <attribute '__weakref__' of 'A' objects>, '__doc__': None}
+
+## 7.map
+map() 会根据提供的函数对指定序列做映射。  
+第一个参数 function 以参数序列中的每一个元素调用 function 函数，返回包含每次 function 函数返回值的新列表。  
+
+    map(lambda x, y: x + y, [1, 3, 5, 7, 9], [2, 4, 6, 8, 10])
+    out:
+    [3, 7, 11, 15, 19]
