@@ -51,5 +51,12 @@
 </p>  
 含义: 文件夹的权限全部开放，比如777, 可用chmod改变
 
+## 12. 查看当前文件夹占用空间
+du : Disk usage  
+-s或--summarize  仅显示总计，只列出最后加总的值。  
+-h或--human-readable  以K，M，G为单位，提高信息的可读性。  
+
+    $ du -hs
+    35G     .
 
 
