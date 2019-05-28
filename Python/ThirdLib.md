@@ -58,6 +58,12 @@
 ### 注意
 np.random.shuffle(x)会直接对x进行操作,函数返回值为None,x的内容会改变
     [2 9 6 4 0 3 1 7 8 5]
+
+## 4. 标量shape
+    a = np.array(3.14)
+    print(a.shape)
+    out:
+    ()
     
     
 # dlib

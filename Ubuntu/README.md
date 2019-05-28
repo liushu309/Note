@@ -59,4 +59,22 @@ du : Disk usage
     $ du -hs
     35G     .
 
+## 13. 关闭标签
+ctrl + d
 
+## 14. 修改密码
+passwd xxx
+
+## 15. pip换源
+修改 ~/.pip/pip.conf (没有就创建一个)， 内容如下：
+
+    [global]
+    index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+
+pip国内的一些镜像
+
+  阿里云 http://mirrors.aliyun.com/pypi/simple/ 
+  中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 
+  豆瓣(douban) http://pypi.douban.com/simple/ 
+  清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 
+  中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/    
