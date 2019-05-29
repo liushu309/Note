@@ -69,7 +69,9 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     
     
 ## 5. pull子文件夹
-有待验证
+有待验证  
+现在有一个test仓库https://github.com/mygithub/test  
+需要gitclone里面的tt子目录：
 
     git init test && cd test     //新建仓库并进入文件夹
     git config core.sparsecheckout true //设置允许克隆子目录
