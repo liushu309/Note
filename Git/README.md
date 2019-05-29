@@ -66,3 +66,13 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
 ### 3. git push 和git pull
     $ git push <远程主机名> <本地分支名>  <远程分支名>
     $ git pull <远程主机名> <远程分支名>:<本地分支名>
+    
+    
+## 5. pull子文件夹
+有待验证
+
+    git init test && cd test     //新建仓库并进入文件夹
+    git config core.sparsecheckout true //设置允许克隆子目录
+    echo 'tt*' >> .git/info/sparse-checkout //设置要克隆的仓库的子目录路径   //空格别漏
+    git remote add origin git@github.com:mygithub/test.git  //这里换成你要克隆的项目和库
+    git pull origin master    //下载
