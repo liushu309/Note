@@ -78,3 +78,11 @@ passwd xxx
     豆瓣(douban) http://pypi.douban.com/simple/ 
     清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 
     中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/    
+
+## 16. 查看文件数量
+1. 查看当前目录下的文件数量（不包含子目录中的文件）
+
+    ls -l|grep "^-"| wc -l
+2. 简写输出第一个
+
+    l|wc
