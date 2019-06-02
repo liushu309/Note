@@ -38,8 +38,13 @@
 ## 4. 创建服务器
 1. 创建仓库
 
-    $ git init --bare liushu.git
-2. 在 ~/.ssh/authorized_keys加入访问电脑的id_rsa.pub文件 
+    $ git init --bare liushu.git  
+    
+如果想不想使用服务器，或者服务器里也可以有工作区，可以:
+
+    $ git init liushu.git
+    $ git config receive.denyCurrentBranch ignore
+2. 在 ~/.ssh/authorized_keys加入访问电脑的id_rsa.pub,或者把id_rsa.pub（推荐重命名一下）放在服务器的~/.ssh目录下
 
 ## 4. 概念
 ### 1. git status -s 中的状态字母
@@ -69,7 +74,7 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     
     
 ## 5. pull子文件夹
-有待验证  
+示例:  
 现在有一个test仓库https://github.com/mygithub/test  
 需要gitclone里面的tt子目录：
 
@@ -78,3 +83,7 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     echo 'tt*' >> .git/info/sparse-checkout //设置要克隆的仓库的子目录路径   //空格别漏
     git remote add origin git@github.com:mygithub/test.git  //这里换成你要克隆的项目和库
     git pull origin master    //下载
+### 注意
+结果虽然只下载了选定的文件夹，但是可能.git文件还是全部下载下来了，所以存储空间和下载时间基本没有怎么变
+
+
