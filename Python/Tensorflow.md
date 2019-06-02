@@ -57,3 +57,17 @@ TensorArray动态张量数组，通常都是跟while_loop或map_fn结合使用
      
 ### TensorArray.stack(name=None) 
 将TensorArray中元素叠起来当做一个Tensor输出
+
+## 4. 概念
+### 4.1 with tf.Session() as sess:
+方便释放sess中的资源，下面两种方式等价  
+
+    # Using the `close()` method.
+    sess = tf.Session()
+    sess.run(...)
+    sess.close()
+
+    # Using the context manager.
+    with tf.Session() as sess:
+      sess.run(...)
+
