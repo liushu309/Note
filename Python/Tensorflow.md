@@ -71,3 +71,23 @@ TensorArray动态张量数组，通常都是跟while_loop或map_fn结合使用
     with tf.Session() as sess:
       sess.run(...)
 
+### 4.2 只使用CPU
+1. 使用tensorflow的 with tf.device('/cpu:0'):函数  
+2. 使用tensorflow声明Session时的参数  
+
+        # tensorflow
+        import tensorflow as tf 
+        sess = tf.Session(config=tf.ConfigProto(device_count={'gpu':0}))
+    
+        # keras 
+        import tensorflow as tf
+        import keras.backend.tensorflow_backend as KTF
+        KTF.set_session(tf.Session(config=tf.ConfigProto(device_count={'gpu':0})))
+    
+3. 使用CUDA_VISIBLE_DEVICES命令行参数
+
+        import os
+        os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+    
+注：上述代码一定要放在import tensorflow或keras等之前，否则不起作用。
