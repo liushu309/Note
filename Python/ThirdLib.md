@@ -100,7 +100,7 @@ np.random.shuffle(x)会直接对x进行操作,函数返回值为None,x的内容�
 
 # logging
 对打印的信息以级别来划分,根据在程序开头设置的级别,来打印适当级别的信息
-## 示例
+## 1. 示例
     import logging
     # level=logging.WARNING和level=logging.INFO,输出打印信息数量不一样
     logging.basicConfig(filename = 'test.log', 
@@ -113,8 +113,8 @@ np.random.shuffle(x)会直接对x进行操作,函数返回值为None,x的内容�
     logger.warning('Warning exists')
     logger.info('Finish')
 
-## 参数说明
-### format
+## 2. 参数说明
+### 2.1 format
     %(levelno)s: 打印日志级别的数值
     %(levelname)s: 打印日志级别名称
     %(pathname)s: 打印当前执行程序的路径，其实就是sys.argv[0]
@@ -126,12 +126,16 @@ np.random.shuffle(x)会直接对x进行操作,函数返回值为None,x的内容�
     %(threadName)s: 打印线程名称
     %(process)d: 打印进程ID
     %(message)s: 打印日志信息
-### level
+### 2.2 level
     DEBUG： 详细信息，通常仅在诊断问题时才受到关注。整数level=10
     INFO： 确认程序按预期工作。整数level=20
     WARNING：出现了异常，但是不影响正常工作.整数level=30
     ERROR：由于某些原因，程序 不能执行某些功能。整数level=40
     CRITICAL：严重的错误，导致程序不能运行。整数level=50
+
+## 3. 与tensorflow关系
+tf.logging的打印内容与logging的设置一致，可以logging.basicConfig(...),再让tensorflow打印出来
+
 
 # functools
 ## reduce
