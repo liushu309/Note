@@ -22,5 +22,6 @@
 ## 4. 保存图像
     fig, ax = plt.subplots(1, num_log, figsize=(16, 4))
     # 注意，尽量在show之前存在，不然可能出现空白的图
-    fig.savefig('data/res.jpg')
+    # dpi: 设置图像的分辨率，可生成高清图像
+    fig.savefig('data/res.jpg', dpi = 300)
     plt.show()
