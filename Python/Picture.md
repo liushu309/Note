@@ -2,7 +2,7 @@
 
     import matplotlib.pyplot as plt
     # 单位百
-    fig, ax = plt.subplot(1, 2, figsize=(16, 4))
+    fig, ax = plt.subplots(1, 2, figsize=(16, 4))
     
 ## 添加图例
     import matplotlib.pyplot as plt
