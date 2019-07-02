@@ -69,7 +69,8 @@ passwd xxx
 修改 ~/.pip/pip.conf (没有就创建一个)， 内容如下：
 
     [global]
-    index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+    trusted-host=mirrors.aliyun.com
+    index-url=http://mirrors.aliyun.com/pypi/simple/
 
 ### pip国内的一些镜像
 
