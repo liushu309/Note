@@ -72,8 +72,11 @@ passwd xxx
     trusted-host=mirrors.aliyun.com
     index-url=http://mirrors.aliyun.com/pypi/simple/
 
-### pip国内的一些镜像
+### 15.1 问题
+".pip/pip.conf" E212: Can't open file for writing  
+因为不存在.pip这个文件夹所以会存在这个问题，新建文件夹~/.pip可以解决
 
+### 15.2 pip国内的一些镜像
     阿里云 http://mirrors.aliyun.com/pypi/simple/ 
     中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 
     豆瓣(douban) http://pypi.douban.com/simple/ 
