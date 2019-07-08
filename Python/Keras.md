@@ -75,5 +75,9 @@ keras默认会占满gpu
     # print(y.shape)
 
 
-
+## keras处理不定长序列
+### 1. 填充数据
+pad_sequences
+### 2. 过滤
+Masking
 
