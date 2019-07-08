@@ -78,6 +78,14 @@ keras默认会占满gpu
 ## keras处理不定长序列
 ### 1. 填充数据
 pad_sequences
+
+    X = pad_sequences(X, maxlen=int(self.max_frames), value=0.0, padding='post', dtype='float32')
 ### 2. 过滤
 Masking
+
+    model = Sequential()
+    model.add(Masking(mask_value = 0,input_shape=self.input_shape))
+    model.add(LSTM(2048, return_sequences=False,
+                input_shape=self.input_shape,
+                dropout=0.5))
 
