@@ -91,3 +91,13 @@ TensorArray动态张量数组，通常都是跟while_loop或map_fn结合使用
         os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
     
 注：上述代码一定要放在import tensorflow或keras等之前，否则不起作用。
+
+## 5. train完成不释放显存
+将train(callback)放在一个子进程中执行  
+
+    import multiprocessing
+    ...
+    p = multiprocessing.Process(target=training, args=(callback,))
+    p.start()
+    p.join()
+
