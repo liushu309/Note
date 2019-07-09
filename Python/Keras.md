@@ -75,12 +75,12 @@ keras默认会占满gpu
     # print(y.shape)
 
 
-## keras处理不定长序列
-### 1. 填充数据
+## 3. keras处理不定长序列
+### 3.1 填充数据
 pad_sequences
 
     X = pad_sequences(X, maxlen=int(self.max_frames), value=0.0, padding='post', dtype='float32')
-### 2. 过滤
+### 3.2 过滤
 Masking
 
     model = Sequential()
@@ -89,3 +89,8 @@ Masking
                 input_shape=self.input_shape,
                 dropout=0.5))
 
+
+## 4 keras多GPU设置
+    from keras.utils import multi_gpu_model
+    ...
+    model =  multi_gpu_model(model, 2)
