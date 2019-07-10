@@ -106,3 +106,31 @@ passwd xxx
 1、ctrl+v使用方向键上下选择范围；  
 2、shift+i进入编辑模式，添加“#”，此时只会在选中行的第一行添加“#”，随后按esc退出(也可能是按两次，可理解为运行批量添加）；此时选中全部行的批注已加好  
 3、删批注：ctrl+v使用方向键上下选择去除批注的范围，按“x”；  
+
+## 19. 查看内存使用
+free
+
+    -b 　以Byte为单位显示内存使用情况。 
+    -k 　以KB为单位显示内存使用情况。 
+    -m 　以MB为单位显示内存使用情况。
+    -g   以GB为单位显示内存使用情况。 
+    -o 　不显示缓冲区调节列。 
+    -s<间隔秒数> 　持续观察内存使用状况。 注意，有些版本要先在前面设置次数，如：‘-c 3’
+    -t 　显示内存总和列。 
+    -V 　显示版本信息。 
+    -h, --human         show human-readable output
+    
+示例：
+
+    liushu@host111:~$:free -h -c 3 -s 1
+                  total        used        free      shared  buff/cache   available
+    Mem:            31G        7.8G         13G        629M        9.9G         22G
+    Swap:           31G        1.8G         30G
+
+                  total        used        free      shared  buff/cache   available
+    Mem:            31G        7.8G         13G        629M        9.9G         22G
+    Swap:           31G        1.8G         30G
+
+                  total        used        free      shared  buff/cache   available
+    Mem:            31G        7.8G         13G        629M        9.9G         22G
+    Swap:           31G        1.8G         30G
