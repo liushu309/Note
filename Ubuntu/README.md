@@ -134,3 +134,8 @@ free
                   total        used        free      shared  buff/cache   available
     Mem:            31G        7.8G         13G        629M        9.9G         22G
     Swap:           31G        1.8G         30G
+
+## 20. 查看pid对应的用户调用信息
+    ps -f -p 1234
+    -f  Do full-format listing. 
+    -p  pidlist
