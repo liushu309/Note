@@ -44,7 +44,12 @@
 
     $ git init liushu.git
     $ git config receive.denyCurrentBranch ignore
-2. 在 ~/.ssh/authorized_keys加入访问电脑的id_rsa.pub,或者把id_rsa.pub（推荐重命名一下）放在服务器的~/.ssh目录下
+或者在.git/config文件中添加设置  
+
+    [receive]
+            denyCurrentBranch = ignore
+            
+2. 在 ~/.ssh/authorized_keys加入访问电脑的id_rsa.pub,或者把id_rsa.pub（推荐重命名一下）放在服务器的~/.ssh目录下。
 
 ## 4. 概念
 ### 1. git status -s 中的状态字母
