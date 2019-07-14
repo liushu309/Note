@@ -139,3 +139,21 @@ free
     ps -f -p 1234
     -f  Do full-format listing. 
     -p  pidlist
+
+
+## 21. linux之间复制文件 scp
+Linux scp命令用于Linux之间复制文件和目录。  
+scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的远程文件拷贝命令。
+### 21.1 从本地复制到远程
+    # 文件
+    scp local_file remote_username@remote_ip:remote_file 
+    # 文件夹
+    scp -r local_folder remote_username@remote_ip:remote_folder 
+### 21.2 从远程复制到本地
+    scp root@www.runoob.com:/home/root/others/music /home/space/music/1.mp3 
+    scp -r www.runoob.com:/home/root/others/ /home/space/music/
+### 21.3 说明
+如果远程服务器防火墙有为scp命令设置了指定的端口，我们需要使用 -P 参数来设置命令的端口号，命令格式如下：  
+
+    #scp 命令使用端口号 4588
+    scp -P 4588 remote@www.runoob.com:/usr/local/sin.sh /home/administrator
