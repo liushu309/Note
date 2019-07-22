@@ -132,8 +132,37 @@ np.random.shuffle(x)会直接对x进行操作,函数返回值为None,x的内容�
     WARNING：出现了异常，但是不影响正常工作.整数level=30
     ERROR：由于某些原因，程序 不能执行某些功能。整数level=40
     CRITICAL：严重的错误，导致程序不能运行。整数level=50
+    
+## 3. TimedRotatingFileHandler
+    import logging
+    from logging.handlers import TimedRotatingFileHandler
 
-## 3. 与tensorflow关系
+    log = logging.getLogger(loggerName)
+
+    formatter = logging.Formatter('%(name)-12s %(asctime)s level-%(levelname)-8s thread-%(thread)-8d %(message)s')   # 每行日志的前缀设置
+    fileTimeHandler = TimedRotatingFileHandler(BASIC_LOG_PATH + filename, "S", 1, 10)
+
+    fileTimeHandler.suffix = "%Y%m%d.log"  #设置 切分后日志文件名的时间格式 默认 filename+"." + suffix 如果需要更改需要改logging 源码
+    fileTimeHandler.setFormatter(formatter)
+    logging.basicConfig(level = logging.INFO)
+    fileTimeHandler.setFormatter(formatter)
+    log.addHandler(fileTimeHandler)
+    try:
+        log.error(msg)
+    except Exception, e:
+        print "writeLog error"
+    finally:
+       log.removeHandler(fileTimeHandler)
+       
+### 3.1 分隔时间说明
+    S 秒
+    M 分钟
+    H 小时
+    D 天
+    W 周
+    midnight 在午夜
+
+## 4. 与tensorflow关系
 tf.logging的打印内容与logging的设置一致，可以logging.basicConfig(...),再让tensorflow打印出来
 
 
