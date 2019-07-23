@@ -157,3 +157,14 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
 
     #scp 命令使用端口号 4588
     scp -P 4588 remote@www.runoob.com:/usr/local/sin.sh /home/administrator
+
+## 22. Ubuntu快捷方式
+    #!/usr/bin/env xdg-open
+    [Desktop Entry]
+    Name=微信
+    Comment=Unofficial WeChat client built with React, MobX and Electron.
+    Exec="/opt/wewechat/wewechat" %U
+    Terminal=false
+    Type=Application
+    Icon=wewechat(可以是相对路径)
+    Categories=Chat;
