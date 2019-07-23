@@ -166,5 +166,5 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
     Exec="/opt/wewechat/wewechat" %U
     Terminal=false
     Type=Application
-    Icon=wewechat(可以是相对路径)
+    Icon=wewechat(可以是绝对路径)
     Categories=Chat;
