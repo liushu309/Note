@@ -168,3 +168,11 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
     Type=Application
     Icon=wewechat(可以是绝对路径)
     Categories=Chat;
+    
+## 23. ffmpeg
+### 23.1 截取视频
+    # 截取视频的前10秒钟，-ss: 开始时间， -t: 截取视频时间
+    ffmpeg -ss 0:0 -t 0:10 -i input.mov output.mp4
+### 23.2 截取图像
+    # 输入的视频
+    ffmpeg -i test.mp4 %05d.img
