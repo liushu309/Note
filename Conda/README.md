@@ -9,3 +9,11 @@
 比如
 
     pip install beautifulsoup4 --trusted-host mirrors.aliyun.com
+
+### 3. opencv无法显示问题
+1.卸载现在的版本  
+
+     conda uninstall ...
+2.使用下面命令重新安装  
+
+    conda install -c menpo opencv3
