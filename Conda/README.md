@@ -17,3 +17,7 @@
 2.使用下面命令重新安装  
 
     conda install -c menpo opencv3
+
+
+### 4. pip --user
+  没有权限时这样安装，可以只在自己时使用，注意--user不需要更改成--liushu，就是--user
