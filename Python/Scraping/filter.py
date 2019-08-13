@@ -1,6 +1,7 @@
 from PIL import Image
 import glob
 import os
+import sys
 
 def is_jpg(filename):
     try:
@@ -11,20 +12,17 @@ def is_jpg(filename):
 
 
 def get_jpg_lists(folder):
-    file_list = glob.glob('*.jpg')
+    file_list = glob.glob(folder + '/*.jpg')
 
     for i in file_list:
-        file_name = os.path.join(folder, i)
-        ret = is_jpg(file_name)
-        print(file_name, ret)
+        print('deal name is', i)
+        ret = is_jpg(i)
+        print(i, ret)
 
         if ret == False:
-            os.remove(file_name)
-            print('delete the file: ', file_name)
+            os.remove(i)
+            print('delete the file: ', i)
 
-
-'''
-过滤内容不是jpg的.jpg文件
-'''
 if __name__ == '__main__':
-    get_jpg_lists('./')	
+    folder = sys.argv[1]
+    get_jpg_lists(folder)	
