@@ -15,7 +15,6 @@ def get_jpg_lists(folder):
     file_list = glob.glob(folder + '/*.jpg')
 
     for i in file_list:
-        print('deal name is', i)
         ret = is_jpg(i)
         print(i, ret)
 
