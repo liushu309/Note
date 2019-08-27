@@ -21,3 +21,7 @@
 
 ### 4. pip --user
   没有权限时这样安装，可以只在自己时使用，注意--user不需要更改成--liushu，就是--user
+
+
+### 5. 安裝PIL
+    conda install pillow
