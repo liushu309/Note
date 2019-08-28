@@ -101,3 +101,74 @@ TensorArray动态张量数组，通常都是跟while_loop或map_fn结合使用
     p.start()
     p.join()
 
+### 6. 加载checkpoint
+    import numpy as np
+    ...
+    
+    config=tf.ConfigProto()
+    config.gpu_options.per_process_gpu_memory_fraction = 0.3
+    sess = tf.Session(config=config)
+    img_slot = tf.placeholder(tf.float32, shape=(1, 224, 224, 3))
+
+    NUM_CLASS = 3
+    
+    graph_id_card_senet = tf.get_default_graph()
+    with graph_id_card_senet.as_default():
+      senet_network_fn = nets_factory.get_network_fn(
+        "resnet_v2_50",
+        num_classes=NUM_CLASS,
+        is_training=False,
+        attention_module="se_block")
+
+      logits, end_points = senet_network_fn(img_slot)
+
+      image_preprocessing_fn_senet = preprocessing_factory.get_preprocessing(
+        'resnet_v2_50',
+        is_training=False)
+
+      saver = tf.train.Saver()
+
+      try:
+        last_checkpoint = tf.train.latest_checkpoint("models/checkpoints_idcard_senet")
+        print(last_checkpoint)
+        if last_checkpoint:
+            saver.restore(sess, last_checkpoint)
+      except:
+        traceback.print_exc()
+
+    id_card_senet_class_name = {
+      0:'back',
+      1:'front',
+      2:'person',
+    }
+
+    def senet_eval_photo_classify(image):
+      with graph_id_card_senet.as_default():
+        res = {}
+        image = image.resize([224, 224])
+        image_array = np.array(image)
+        if image_array.shape[-1] == 4:
+            image_array = cv2.cvtColor(image_array, cv2.COLOR_RGBA2RGB)
+        image_array = image_array.astype('float32')
+
+        image_test = image_preprocessing_fn_senet(image_array, 224, 224)
+        image_test = tf.expand_dims(image_test, 0)
+
+        with sess.as_default():
+            image_test = sess.run(image_test)
+            x = end_points['predictions'].eval(feed_dict={img_slot: image_test})
+        res['class_rate'] = str(x.max())
+        res['class_num'] = str(x.argmax())
+        res['class_name'] = id_card_senet_class_name[x.argmax()]
+        return res
+        
+    if __name__ == "__main__":
+        img_names = glob.glob(os.path.join(sys.argv[1], '*.jpg'))
+        rets = []
+        for img_name in img_names:
+            print('deal img ', img_name)
+            img = Image.open(img_name)
+            ret = senet_eval_photo_classify(img)
+            rets.append(ret)
+        for ret in rets:
+            print(ret)
