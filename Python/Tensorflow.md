@@ -101,7 +101,7 @@ TensorArray动态张量数组，通常都是跟while_loop或map_fn结合使用
     p.start()
     p.join()
 
-### 6. 加载checkpoint
+## 6. 加载checkpoint
     import numpy as np
     ...
     
@@ -172,3 +172,24 @@ TensorArray动态张量数组，通常都是跟while_loop或map_fn结合使用
             rets.append(ret)
         for ret in rets:
             print(ret)
+
+## 7. 数据增强
+Augmentor和imgaug,Augmentor使用比较简单,只有一些简单的操作。 imgaug实现的功能更多，可以对keypoint, bounding box同步处理，在segmentation和detection任务经常使用imgaug这个库。
+### Augmentor
+    # coding:utf-8
+    import Augmentor
+    import os
+
+    path = os.path.abspath("1")
+    print(path)
+    p = Augmentor.Pipeline(path)
+
+    p.rotate(probability=0.7, max_left_rotation=25, max_right_rotation=25)
+    p.skew(probability=0.8, magnitude=0.1)
+    p.shear(probability=0.8, max_shear_left=2, max_shear_right=2)
+    p.zoom(probability=0.7, min_factor=0.8, max_factor=1.0)
+    p.resize(probability=1.0, width=224, height=224)
+
+    p.save_format="png"
+    #p.process()
+    p.sample(3000)
