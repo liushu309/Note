@@ -193,3 +193,23 @@ Augmentor和imgaug,Augmentor使用比较简单,只有一些简单的操作。 im
     p.save_format="png"
     #p.process()
     p.sample(3000)
+
+
+## 8. tf.Graph().as_default()
+定义了一个新的图
+
+    graph = tf.Graph()
+    with graph.as_default():
+        ...
+所有的变量必须都在graph内，比如将tf.placeholder定义在graph外面，现所有的变量都会放到tf.get_default_graph()中，而不会出现在tf.Graph()，可能出现ValueError: No variables to save的错误
+
+    img_slot = tf.placeholder(tf.float32, shape=(1, 224, 224, 3))
+    graph = tf.Graph()
+    with graph.as_default():
+        ....
+更改
+
+    graph = tf.Graph()
+    with graph.as_default():
+        img_slot = tf.placeholder(tf.float32, shape=(1, 224, 224, 3))
+        ....
