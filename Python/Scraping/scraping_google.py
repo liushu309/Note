@@ -1,3 +1,7 @@
+# 方法一
+# pip install google_images_download
+# googleimagesdownload -k "谭卓" -l 20
+# 两种方法都需要下载相应chrome版本的chromedriver.exe
 
 #*****************************
 #****** 2018 12.30  **********
