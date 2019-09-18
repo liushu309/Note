@@ -179,18 +179,19 @@ Augmentor和imgaug,Augmentor使用比较简单,只有一些简单的操作。 im
     # coding:utf-8
     import Augmentor
     import os
+    import sys
 
-    path = os.path.abspath("1")
+    path = sys.argv[1]
     print(path)
     p = Augmentor.Pipeline(path)
 
     p.rotate(probability=0.7, max_left_rotation=25, max_right_rotation=25)
     p.skew(probability=0.8, magnitude=0.1)
     p.shear(probability=0.8, max_shear_left=2, max_shear_right=2)
-    p.zoom(probability=0.7, min_factor=0.8, max_factor=1.0)
-    p.resize(probability=1.0, width=224, height=224)
+    p.zoom(probability=0.7, min_factor=0.6, max_factor=1.0)
+    #p.resize(probability=1.0, width=224, height=224)
 
-    p.save_format="png"
+    p.save_format="jpg"
     #p.process()
     p.sample(3000)
 
