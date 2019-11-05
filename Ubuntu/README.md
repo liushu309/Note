@@ -59,6 +59,11 @@ du : Disk usage
     $ du -hs
     35G     .
 
+查看第一级目录，以G为单位
+
+    du -B G --max-depth=1 /home/DATA/DATASET/
+
+
 ## 13. 关闭标签
 ctrl + d
 
@@ -176,3 +181,4 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
 ### 23.2 截取图像
     # 输入的视频
     ffmpeg -i test.mp4 %05d.img
+    
