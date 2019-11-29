@@ -180,5 +180,5 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
     ffmpeg -ss 0:0 -t 0:10 -i input.mov output.mp4
 ### 23.2 截取图像
     # 输入的视频
-    ffmpeg -i test.mp4 %05d.img
+    ffmpeg -i test.mp4 %05d.jpg
     
