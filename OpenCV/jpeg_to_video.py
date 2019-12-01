@@ -20,5 +20,5 @@ def jpg2video_zh_test(img_path, video_save_path, fps):
     vw.release()
 
 
-if __name__ == '__mian__':
+if __name__ == '__main__':
     jpg2video_zh_test('data/image', 'liushu.avi', 20)
