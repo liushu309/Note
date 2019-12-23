@@ -31,12 +31,15 @@
 
 ## 5. @classmethod和@staticmethod
 ### @classmethod    
-　　1. classmethod 是一个装饰器函数，用来标示一个方法为类方法    
-　　2. 类方法的第一个参数是类对象参数，在方法被调用的时候自动将类对象传入，参数名称约定为cls  
-　　3. 如果一个方法被标示为类方法，则该方法可被类对象调用(如 C.f())，也可以被类的实例对象调用(如 C().f())  
-    4. 类被继承后，子类也可以调用父类的类方法，但是第一个参数传入的是子类的类对象     
+   1. classmethod 是一个装饰器函数，用来标示一个方法为类方法    
+   2. 类方法的第一个参数是类对象参数，在方法被调用的时候自动将类对象传入，参数名称约定为cls  
+   3. 如果一个方法被标示为类方法，则该方法可被类对象调用(如 C.f())，也可以被类的实例对象调用(如 C().f())  
+   4. 类被继承后，子类也可以调用父类的类方法，但是第一个参数传入的是子类的类对象    
+   5. 可以访问和类相关（不和实例相关)的属性，看 test.my_class_print("class print") 和 my_test.my_class_print("class print") 的结果都是class中定义的class_name  的值，非实例的值：xxx 
+
 ### @staticmethod    
-   Class methods are different than C++ or Java static methods. If you want those, see staticmethod() in this section.
+   1. Class methods are different than C++ or Java static methods. If you want those, see staticmethod() in this section.  
+   2. 不需要访问和类相关的属性或数据(感觉只是概念上的区别，你这样声明了用的人就知道了，如果你非要在这个方法中访问test.xxx 它就和@classmethod的作用一样了。）
    
 ## 6. __dict__()
 对象的__dict__()和类的__dict__()方法不同,对象的只是对象的属性,类的还有一些其它的信息    
