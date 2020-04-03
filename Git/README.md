@@ -7,7 +7,7 @@
        git config --global user.email "your email"  
     6> 测试：ssh -v git@github.com  
   
-## 2. 本地连接连接github
+## 2. 本地连接github
     1> github上创建一个仓库，地址 https://github.com/liushu309/test.git  
     2> 在本地上生成一个仓库，可以  
       git clone git@github.com:nanfei9330/xx.git  
