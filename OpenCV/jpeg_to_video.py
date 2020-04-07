@@ -21,4 +21,4 @@ def jpg2video_zh_test(img_path, video_save_path, fps):
 
 
 if __name__ == '__main__':
-    jpg2video_zh_test('data/image', 'liushu.avi', 20)
+    jpg2video_zh_test('data/image', 'liushu.avi', 25)
