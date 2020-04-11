@@ -101,3 +101,5 @@
     # ret = soup.find_all('a', attrs={'href' :re.compile('\d{4,}')})
     # 查找含有title属性的标签
     ret = soup.find_all(lambda tag:tag.has_attr('title'))
+    # 标签名为<a>，子标签数量大于1，好像文本也算是一个子标签
+    ret = soup.find_all(lambda tag:tag.name == 'a' and len(tag.contents) > 1 and tag.has_attr('title'))
