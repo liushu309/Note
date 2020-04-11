@@ -182,3 +182,11 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
     # 输入的视频
     ffmpeg -i test.mp4 %05d.jpg
     
+    
+## 24. 批量kill某个进程
+如kill多进程，一个个去手动kill太麻烦
+
+    ps -aux |grep 'python test.py'|cut -c 9-15|xargs kill -9
+    
+“cut -c 9-15”是截取输入行的第9个字符到第15个字符，而这正好是进程号PID。    
+“xargs kill -s 9”中的xargs命令是用来把前面命令的输出结果（PID）作为“kill -s 9”命令的参数，并执行该命令。“e69da5e887aa7a6431333365656531kill -s 9”会强行杀掉指定进程。   
