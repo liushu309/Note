@@ -96,14 +96,17 @@ def get_url_per_process(urls, num_processes = 4):
     url_list = []
 
     page_num = len(urls)
-    if page_num < 4:
+    if page_num < num_processes:
         url_list = [[i] for i in urls]
-        url_list.extend([[] * (4 - page_num)])
+        url_list.extend([[] * (num_processes - page_num)])
     else:
         per_page_n = int(page_num / num_processes)
         for i in range(num_processes):
             url_list.append(urls[i * per_page_n : (i + 1) * per_page_n])
-        url_list[-1] = urls[(num_processes - 1) * per_page_n : ]
+        if per_page_n * num_processes < page_num:
+            rest_urls = page_num - per_page_n * num_processes
+            for i in range(rest_urls):
+                url_list[i].append(urls[per_page_n * num_processes + i])
     return url_list
 
 # 进程工作
@@ -164,9 +167,7 @@ if __name__ == '__main__':
     save_dir = 'data'
 
     # 进程数
-    num_processes = 4
+    num_processes = 16
 
-    page_suffix_list = page_suffix
-
-    main_work(url, page_suffix_list, save_dir, num_processes)
+    main_work(url, xiezhen_list + page_suffix, save_dir, num_processes)
 
