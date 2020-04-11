@@ -79,3 +79,25 @@
     # out:
     # 27
     
+## 1. python beatifulsoup模块
+### 1.1 示例
+    from bs4 import BeautifulSoup
+    import requests
+    import re
+    url = 'https://www.hhk278.com/meinv/list-V女郎.html'
+    r = requests.get(url)
+    r.encoding = r.apparent_encoding
+    demo = r.text  # 服务器返回响应
+    soup = BeautifulSoup(demo, "html.parser")
+    """
+    demo 表示被解析的html格式的内容
+    html.parser表示解析用的解析器
+    """
+    
+    with open('ret.html', 'w', encoding='utf-8') as f:
+        f.write(soup.text)
+        f.write(soup.prettify())
+    # 查找标签<a>的href属性中，含有4个数字以上的字段
+    # ret = soup.find_all('a', attrs={'href' :re.compile('\d{4,}')})
+    # 查找含有title属性的标签
+    ret = soup.find_all(lambda tag:tag.has_attr('title'))
