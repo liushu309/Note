@@ -137,7 +137,6 @@ def download_pic(save_dir, urls, download_flag):
             check_folder(save_dir)
             write_f_n = os.path.join(save_dir, 'error_download.txt')
             with open(write_f_n, 'a', encoding='utf-8') as f:
-                print('-------------------->\n',urls[0][0])
                 f.write('download_pic: ' + urls[0][0])
                 f.write('\n')
             print('错误: %s，无法保存网页'%(str(e)))
@@ -226,7 +225,7 @@ if __name__ == '__main__':
     save_dir = 'data'
 
     # 进程数
-    num_processes = 8
+    num_processes = 4
 
     # 0 图片, 1 磁力连接
     download_flag = 0
