@@ -190,3 +190,10 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
     
 “cut -c 9-15”是截取输入行的第9个字符到第15个字符，而这正好是进程号PID。    
 “xargs kill -s 9”中的xargs命令是用来把前面命令的输出结果（PID）作为“kill -s 9”命令的参数，并执行该命令。“e69da5e887aa7a6431333365656531kill -s 9”会强行杀掉指定进程。   
+
+## 25. Ubuntu开机闪屏
+ubntu更新后，没有更新引导容易出现这样的情况
+
+    sudo update-grub
+
+
