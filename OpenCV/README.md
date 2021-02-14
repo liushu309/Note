@@ -15,3 +15,4 @@
     7. BUILD_TEST
     8. OPENCV_ENABLE_NONFREE           SIFT implementation
     9. DOPENCV_ENABLE_NONFREE
+    10. BUILD_opencv_world             将所有模块编译成一个库，否则每个模块都有一个库，会很麻烦
