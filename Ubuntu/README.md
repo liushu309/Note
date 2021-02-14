@@ -1,4 +1,9 @@
-## 1. Unable to access “文档”
+## 1. ji ben
+### 1.1 root
+  su ru liang ci root mi ma    
+
+    sudo passwd root
+### 1.2 Unable to access “文档”
     sudo ntfsfix /dev/sda5
 
 ## 2. 五笔输入法安装
