@@ -8,7 +8,7 @@
 
 ## 2. 五笔输入法安装
   1> sudo apt-get install fcitx-table-wubi，重启  
-  2> Ubuntu16.04在System Setting->Language Support中(Ubuntu18.04 Setting)，最下面Keyboard input method system，由ibus切换成fcitx(18.04不需要，还是ibus)  
+  2> Ubuntu16.04在System Setting->Language Support中(Ubuntu18.04 Setting)，最下面Keyboard input method system，由ibus切换成fcitx(18.04和20.04不需要，还是ibus)  
   3> 在桌面最右上角，点击输入法->Text Entry Setting...->添加wubi 和 pinyin (18.04是“汉语”点进去，不需要进行修改) 
   4> 繁体简体切换：shift + ctrl + f(18.04的比例缩放问题输入以下命令：gsettings set org.gnome.desktop.interface text-scaling-factor 1.3) 
 
@@ -196,9 +196,5 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
 “cut -c 9-15”是截取输入行的第9个字符到第15个字符，而这正好是进程号PID。    
 “xargs kill -s 9”中的xargs命令是用来把前面命令的输出结果（PID）作为“kill -s 9”命令的参数，并执行该命令。“e69da5e887aa7a6431333365656531kill -s 9”会强行杀掉指定进程。   
 
-## 25. Ubuntu开机闪屏
-ubntu更新后，没有更新引导容易出现这样的情况
-
-    sudo update-grub
 
 
