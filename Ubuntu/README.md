@@ -1,6 +1,6 @@
-## 1. ji ben
+## 1. 基本
 ### 1.1 root
-  su ru liang ci root mi ma    
+  输入关键词：密码    
 
     sudo passwd root
 ### 1.2 Unable to access “文档”
@@ -201,4 +201,6 @@ ubntu更新后，没有更新引导容易出现这样的情况
 
     sudo update-grub
 
-
+## 26. Ubuntu更新chrome
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo dpkg -i ./google-chrome-stable_current_amd64.deb
