@@ -1,6 +1,6 @@
-## 1. ji ben
+## 1. 基本
 ### 1.1 root
-  su ru liang ci root mi ma    
+  输入关键词：密码    
 
     sudo passwd root
 ### 1.2 Unable to access “文档”
@@ -197,4 +197,6 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
 “xargs kill -s 9”中的xargs命令是用来把前面命令的输出结果（PID）作为“kill -s 9”命令的参数，并执行该命令。“e69da5e887aa7a6431333365656531kill -s 9”会强行杀掉指定进程。   
 
 
-
+## 26. Ubuntu更新chrome
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo dpkg -i ./google-chrome-stable_current_amd64.deb

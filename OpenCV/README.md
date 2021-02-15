@@ -1,7 +1,8 @@
-## 分解视频图像
+## 1. 分解视频图像
 可以使用如下命令：`ffmpeg -i video.mpg image-%04d.jpg`
 
-## 编译opencv
+## 2. 编译opencv
+### 2.1以opencv4.5.1为例
   what():  OpenCV(3.4.4) /home/liushu/Desktop/opencv-3.4.4/modules/highgui/src/window.cpp:632: error: (-2:Unspecified error) The function is not implemented. Rebuild the library with Windows, GTK+ 2.x or Carbon support. If you are on Ubuntu or Debian, install libgtk2.0-dev and pkg-config, then re-run cmake or configure script in function 'cvShowImage'
 
     sudo apt-get install build-essential libgtk2.0-dev libavformat-dev libswscale-dev libavcodec-dev ffmpeg
@@ -16,3 +17,11 @@
     8. OPENCV_ENABLE_NONFREE           SIFT implementation
     9. DOPENCV_ENABLE_NONFREE
     10. BUILD_opencv_world             将所有模块编译成一个库，否则每个模块都有一个库，会很麻烦
+   
+### 2.2 常见问题
+  1. 出现fatal error: boostdesc_bgm.i: No such file or directory
+将百度网盘里的文件boostdesc_bgm.i,vgg_generated_48.i等.rar解压后，放在 opencv_contrib/modules/xfeatures2d/src/ 路径下即可
+
+  2. fatal error: features2d/test/test_detectors_regression.impl.hpp: No such file or directory
+原因是没找到这个文件
+将opencv / modules / features2d复制，然后粘贴到build目录中来解决该问题。
