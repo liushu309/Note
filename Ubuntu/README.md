@@ -1,10 +1,41 @@
 ## 1. 基本
 ### 1.1 root
-  输入关键词：密码    
+  输入关键词：密码   
 
     sudo passwd root
-### 1.2 Unable to access “文档”
+
+### 1.2 换源
+  修改  
+  
+    cd /etc/apt
+    vim source.list
+
+### 1.3 Unable to access “文档”
     sudo ntfsfix /dev/sda5
+
+### 1.4 配置环境变量
+  1.4.1 ~/.bashrc  
+  生效时间：使用相同的用户打开新的终端时生效，或者手动source ~/.bashrc生效  
+  生效期限：永久有效  
+  生效范围：仅对当前用户有效  
+
+    vim ~/.bashrc
+    # 在最后一行加上
+    export PATH=$PATH:/home/uusama/mysql/bin	
+
+  1.4.2 ~/.bash_profile  
+  生效时间：远程登录时生效，或者手动source ~/.bash_profile生效  
+  生效期限：永久有效  
+  生效范围：仅对当前用户有效  
+
+    vim ~/.bash_profile
+    # 在最后一行加上
+    export PATH=$PATH:/home/uusama/mysql/bin
+
+  1.4.3 /etc/bashrc, /etc/profile, /etc/environment  
+  生效时间：新开终端生效，或者手动source /etc/bashrc生效  
+  生效期限：永久有效  
+  生效范围：对所有用户有效  
 
 ## 2. 五笔输入法安装
   1> sudo apt-get install fcitx-table-wubi，重启  
