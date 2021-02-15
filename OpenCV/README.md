@@ -24,4 +24,18 @@
 
   2. fatal error: features2d/test/test_detectors_regression.impl.hpp: No such file or directory
 原因是没找到这个文件
-将opencv / modules / features2d复制，然后粘贴到build目录中来解决该问题。
+将opencv / modules / features2d复制，然后粘贴到build目录中来解决该问题。 
+
+
+## 3. 在Ubuntu上配置环境
+### 3.1 配置pkg
+    $ sudo vim /etc/profile
+    # 添加字段，这里一定要加上export，不加只是配置了PKG_CONFIG_PATH这个变量，加了才加入到了系统里
+    export  PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opencv4/lib/pkgconfig 
+    # 更新配置
+    $ source ~/.bashrc
+### 3.2 库添加到路径
+    $ sudo gedit /etc/ld.so.conf.d/opencv.conf 
+    # 在文件中写入
+    /usr/local/opencv4/lib  
+    $ sudo ldconfig  
