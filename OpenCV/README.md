@@ -39,3 +39,76 @@
     # 在文件中写入
     /usr/local/opencv4/lib  
     $ sudo ldconfig  
+
+### 3.3 测试
+
+    #include <opencv2/opencv.hpp>
+    #include <iostream>
+
+    using namespace cv;
+
+    int main(){
+      Mat a = cv::imread("./1.jpg", 1);
+      imshow("test", a);
+      waitKey(0);
+      return 0;
+    }
+    # 注意，g++后面跟文件名，不要把文件放在最后，容易报错
+    $ g++ test1.cpp `pkg-config opencv4 --libs --cflags` -o app
+
+### 3.4 在vscode上配置环境
+在vscode上运行上面的代码  
+c_cpp_properties.json文件  
+
+    {
+        "configurations": [
+            {
+                "name": "Linux",
+                "includePath": [
+                    "${workspaceFolder}/**",
+                    // 只修改了这一行
+                    "/usr/local/opencv_4.5.1/include/opencv4"  
+                ],
+                "defines": [],
+                "compilerPath": "/usr/bin/gcc",
+                "cStandard": "gnu17",
+                "cppStandard": "gnu++14",
+                "intelliSenseMode": "linux-gcc-x64"
+            }
+        ],
+        "version": 4
+    }
+
+tasks.json文件
+
+    {
+        "tasks": [
+            {
+                "type": "cppbuild",
+                "label": "C/C++: g++ 生成活动文件",
+                "command": "/usr/bin/g++",
+                "args": [
+                    "-g",
+                    "${file}",
+                    "-o",
+                    "${fileDirname}/${fileBasenameNoExtension}", 
+                    // 只添加了下面这三行，注意，“－l”和“opencv_world”不能简写成"lopencv_world",以及前面不要加lib,如libopencv_world
+                    "-I", "/usr/local/opencv_4.5.1/include/opencv4",
+                    "-L", "/usr/local/opencv_4.5.1/lib",
+                    "-l", "opencv_world"
+                ],
+                "options": {
+                    "cwd": "${workspaceFolder}"
+                },
+                "problemMatcher": [
+                    "$gcc"
+                ],
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "detail": "调试器生成的任务。"
+            }
+        ],
+        "version": "2.0.0"
+    }
