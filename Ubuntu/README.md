@@ -238,3 +238,8 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
     #GRUB_DEFAULT=0
     GRUB_DEFAULT="1>2"
     $sudo update-grub
+
+## 28. 字体
+https://blog.csdn.net/starzhou/article/details/105493420
+     
+     vscode setting.json "YaHei Consolas Hybrid'"
