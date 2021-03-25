@@ -231,3 +231,10 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
 ## 26. Ubuntu更新chrome
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo dpkg -i ./google-chrome-stable_current_amd64.deb
+
+
+## 27. Ubuntu默认内核修改
+    $sudo vim /etc/default/grub
+    #GRUB_DEFAULT=0
+    GRUB_DEFAULT="1>2"
+    $sudo update-grub
