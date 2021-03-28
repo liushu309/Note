@@ -11,6 +11,9 @@
   2. 安装后会跳出一个界面，选择lightdm  然后重启：reboot  
     
     sudo apt-get install lightdm
+ 要重新切换，写如下段落  
+ 
+     sudo dpkg-reconfigure lightdm
     
   8> 禁用显卡  
   
