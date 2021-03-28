@@ -11,6 +11,14 @@
   2. 安装后会跳出一个界面，选择lightdm  然后重启：reboot  
     
     sudo apt-get install lightdm
+    
+  8> 禁用显卡  
+  
+  $sudo vi /etc/modprobe.d/blacklist-nouveau.conf
+  
+      blacklist nouveau
+      options nouveau modeset=0
+  $sudo update-initramfs -u
 
 
 
