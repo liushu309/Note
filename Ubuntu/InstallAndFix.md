@@ -24,4 +24,8 @@
   $sudo update-initramfs -u
 
 
+9> sudo /etc/default/grub  
+
+splash后加nomodeset
+
 
