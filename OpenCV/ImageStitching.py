@@ -1,38 +1,118 @@
-#coding: utf-8
-import numpy as np
 import cv2
-import matplotlib.pyplot as plt
+import numpy as np
+def warp_corner(H,src):
+    '''
+    :param H: 单应矩阵
+    :param src: 透视变化的图像
+    :return: 透视变化后的四个角，左上角开始，逆时钟
+    '''
  
-leftgray = cv2.imread('sub/camera_7.jpg')
-rightgray = cv2.imread('sub/camera_8.jpg')
-
-h,w=leftgray.shape[:2]
-scale_size = 4
-leftgray = cv2.resize(leftgray, (int(w / scale_size), int(h / scale_size)))
-rightgray = cv2.resize(rightgray, (int(w / scale_size), int(h / scale_size)))
-h,w=leftgray.shape[:2]
-
-surf=cv2.xfeatures2d.SURF_create() #将Hessian Threshold设置为400,阈值越大能检测的特征就越少
-kp1,des1=surf.detectAndCompute(leftgray,None)  #查找关键点和描述符
-kp2,des2=surf.detectAndCompute(rightgray,None)
-
-
-flann=cv2.FlannBasedMatcher()  #建立匹配器
-matches=flann.match(des1,des2)  #得出匹配的关键点
-src_pts = np.array([ kp1[m.queryIdx].pt for m in matches])    #查询图像的特征描述子索引
-dst_pts = np.array([ kp2[m.trainIdx].pt for m in matches])    #训练(模板)图像的特征描述子索引
-
-H, mask = cv2.findHomography(src_pts,dst_pts, cv2.RANSAC, 5.0, np.zeros(src_pts.shape), 500)         #生成变换矩阵
-
-dst_corners=cv2.warpPerspective(leftgray,H,(w*2,h*2))#透视变换，新图像可容纳完整的两幅图
-
-# rightgray.copyTo(dst_corners(Rect(0, 0, w, h)))
-dst_corners[:h, 0:w:, :] = rightgray
-
-fig, ax = plt.subplots(1, 1, figsize=(16, 4))
-ax.imshow(dst_corners[:, :, : :-1])
-# ax[0].imshow(dst_corners[:, :, : :-1])
-# ax[1].imshow(rightgray[:, :, : :-1])
-# ax[2].imshow(leftgray[:, :, : :-1])
-
-cv2.imwrite('ret/tiledImg1.jpg',dst_corners)   #显示，第一幅图已在标准位置
+    warp_points=[]
+    # 图像左上角，左下角
+    src_left_up=np.array([0,0,1])
+    src_left_down=np.array([0,src.shape[0],1])
+ 
+    # 图像右上角，右下角
+    src_right_up=np.array([src.shape[1],0,1])
+    src_right_down=np.array([src.shape[1],src.shape[0],1])
+ 
+    #透视变化后的左上角，左下角
+    warp_left_up=H.dot(src_left_up)
+    left_up=warp_left_up[0:2]/warp_left_up[2]
+    warp_points.append(left_up)
+    warp_left_down=H.dot(src_left_down)
+    left_down=warp_left_down[0:2]/warp_left_down[2]
+    warp_points.append(left_down)
+ 
+    # 透视变化后的右上角，右下角
+    warp_right_up=H.dot(src_right_up)
+    right_up=warp_right_up[0:2]/warp_right_up[2]
+    warp_points.append(right_up)
+    warp_right_down=H.dot(src_right_down)
+    right_down=warp_right_down[0:2]/warp_right_down[2]
+    warp_points.append(right_down)
+    return warp_points
+def optim_mask(mask,warp_point):
+ 
+ 
+    min_left_x = min(warp_point[0][0], warp_point[1][0])
+    left_margin = mask.shape[1] - min_left_x
+    points_zeros = np.where(mask == 0)
+    x_indexs = points_zeros[1]
+    alpha = (left_margin - (x_indexs - min_left_x)) / left_margin
+    mask[points_zeros] = alpha
+    return mask
+def Seam_Left_Right(left,imagewarp,H,warp_point,with_optim_mask=False):
+    '''
+    :param left: 拼接的左图像
+    :param imagewarp: 透视变化后的右图像
+    :param H: 单应矩阵
+    :param warp_point: 透视变化后的四个顶点
+    :param with_optim_mask: 是否需要对拼接后的图像进行优化
+    :return:
+    '''
+    w = left.shape[1]
+    mask = imagewarp[:, 0:w]
+    mask = cv2.cvtColor(mask, cv2.COLOR_BGR2GRAY)
+    mask[mask != 0] = 1
+    mask[mask == 0] = 0
+    mask = 1 - mask
+    mask = np.float32(mask)
+ 
+    if with_optim_mask==True:
+        mask=optim_mask(mask,warp_point)
+    mask_rgb=np.stack([mask,mask,mask],axis=2)
+    tt=np.uint8((1-mask_rgb)*255)
+    left=left*mask_rgb+imagewarp[:,0:w]*(1-mask_rgb)
+    imagewarp[:,0:w]=left
+    return np.uint8(imagewarp)
+def main():
+    left=cv2.imread('img/i.jpg')
+    #left=cv2.resize(left,dsize=(512,512))
+    left_gray=cv2.cvtColor(left,cv2.COLOR_BGR2GRAY)
+    right=cv2.imread('img/j.jpg')
+    #right=cv2.resize(right,dsize=(512,512))
+    right_gray=cv2.cvtColor(right,cv2.COLOR_BGR2GRAY)
+ 
+    #提取左右图像的surf特征点
+    detector=cv2.xfeatures2d_SURF.create(hessianThreshold=400)
+    left_kps,left_dess=detector.detectAndCompute(left_gray,None)
+    right_kps,right_dess=detector.detectAndCompute(right_gray,None)
+ 
+    #利用knn对左右图像的特征点进行匹配
+    matcher=cv2.FlannBasedMatcher_create()
+    knn_matchers=matcher.knnMatch(left_dess,right_dess,2)
+    good_keypoints=[]
+ 
+ 
+    #挑出好的匹配点
+    for m,n in knn_matchers:
+        if m.distance<0.5*n.distance:
+            good_keypoints.append(m)
+    left_points=np.zeros(shape=(len(good_keypoints),2),dtype=np.float32)
+    right_points=np.zeros(shape=(len(good_keypoints),2),dtype=np.float32)
+    outimg=np.zeros(shape=(right.shape[0],right.shape[0]+left.shape[0],3),dtype=np.uint8)
+    cv2.drawMatches(left,left_kps,right,right_kps,good_keypoints,outimg)
+    # cv2.imshow('hks',outimg)
+    # cv2.waitKey(0)
+    for i in range(len(good_keypoints)):
+        left_points[i][0]=left_kps[good_keypoints[i].queryIdx].pt[0]
+        left_points[i][1]=left_kps[good_keypoints[i].queryIdx].pt[1]
+        right_points[i][0]=right_kps[good_keypoints[i].trainIdx].pt[0]
+        right_points[i][1]=right_kps[good_keypoints[i].trainIdx].pt[1]
+ 
+    #求取单应矩阵
+    H,_=cv2.findHomography(right_points,left_points)
+ 
+    #求出右图像的透视变化顶点
+    warp_point = warp_corner(H, right)
+    #求出右图像的透视变化图像
+    imagewarp=cv2.warpPerspective(right,H,(left.shape[1]+right.shape[1],left.shape[0]))
+ 
+    #对左右图像进行拼接，返回最后的拼接图像
+    image_seam_optim=Seam_Left_Right(left,imagewarp,H,warp_point,with_optim_mask=True)
+    cv2.namedWindow('image_seam_optim',cv2.WINDOW_NORMAL)
+    cv2.imshow('image_seam_optim',image_seam_optim)
+    cv2.waitKey(0)
+if __name__=='__main__':
+    main()
