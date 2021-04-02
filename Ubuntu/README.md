@@ -258,3 +258,14 @@ https://blog.csdn.net/starzhou/article/details/105493420
     sudo mkfontscale && sudo mkfontdir && sudo fc-cache -fv
 
      vscode setting.json "YaHei Consolas Hybrid'"
+
+
+## 显示网速
+
+    sudo add-apt-repository ppa:fossfreedom/indicator-sysmonitor
+    sudo apt install indicator-sysmonitor
+    indicator-sysmonitor
+    # 在右上角上点击，出现preferences
+    # 在General中点击Run on startup
+    # 在Advanced中点击Advanced,写入
+    # cpu: {cpu} mem: {mem} net:{net}
