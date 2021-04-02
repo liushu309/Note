@@ -260,7 +260,7 @@ https://blog.csdn.net/starzhou/article/details/105493420
      vscode setting.json "YaHei Consolas Hybrid'"
 
 
-## 显示网速
+## 29. 显示网速
 
     sudo add-apt-repository ppa:fossfreedom/indicator-sysmonitor
     sudo apt install indicator-sysmonitor
@@ -269,3 +269,6 @@ https://blog.csdn.net/starzhou/article/details/105493420
     # 在General中点击Run on startup
     # 在Advanced中点击Advanced,写入
     # cpu: {cpu} mem: {mem} net:{net}
+
+## 30. install pytorch
+    conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch -y
