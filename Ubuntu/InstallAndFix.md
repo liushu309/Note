@@ -3,17 +3,17 @@
   2> 按F2不动，进入bios设置启动顺序，按F5 F6上下调节顺序，设置U盘为第一启动，其它的不要设置，启动模式还是uefi模式  
   3> 在电脑上，把一个分区空出来  
   4> 用软碟通制作UbuntuU盘启动盘，写入方式选USB-HDD+,便捷启动里选“Syslinux”  
-  5> 将Secure Boot设为disable  
-  6> 将上述的设为enable  
-  7> 如果有问题可以尝试以下步骤  
+  ~~5> 将Secure Boot设为disable ~~  
+  ~~6> 将上述的设为enable~~    
+  ~~7> 如果有问题可以尝试以下步骤~~  
   
-  1. GraphicDevice设为UMA Graphic（集成显卡模式），装成后再改回来  
-  2. 安装后会跳出一个界面，选择lightdm  然后重启：reboot  
+  ~~1. GraphicDevice设为UMA Graphic（集成显卡模式），装成后再改回来~~  
+  ~~2. 安装后会跳出一个界面，选择lightdm  然后重启：reboot~~  
     
-    sudo apt-get install lightdm
- 要重新切换，写如下段落  
+    ~~sudo apt-get install lightdm~~
+ ~~要重新切换，写如下段落~~  
  
-     sudo dpkg-reconfigure lightdm
+     ~~sudo dpkg-reconfigure lightdm~~
     
   8> 禁用显卡，后再立马装驱动
   
@@ -34,3 +34,12 @@ splash后加nomodeset
     sudo systemctl unmask accounts-daemon.service
 之后再次reboot，gdm3成功进入桌面。完美解决问题。
 
+
+11> 显卡安装  
+1. 使用高版本的离线文件安装nvidia-driver，比如cuda11.0, 不要使用sudo apt install nvidia-driver-460之类
+2. 亮度调节
+
+        sudo add-apt-repository ppa:apandada1/brightness-controller
+        sudo apt update
+        sudo apt install brightness-controller
+        brightness-controller
