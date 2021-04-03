@@ -7,3 +7,6 @@
 ### 3. 终端字太丑
     Terminal › Integrated: Font Family
     monospace
+
+### 4. ubuntu进入函数后返回
+Ctrl + Alt + -
