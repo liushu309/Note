@@ -272,3 +272,6 @@ https://blog.csdn.net/starzhou/article/details/105493420
 
 ## 30. install pytorch
     conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch -y
+
+## 31. 有道
+    https://github.com/ChestnutHeng/Wudao-dict
