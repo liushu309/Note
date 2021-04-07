@@ -25,6 +25,8 @@ pts2 = []
  
 # 按照Lowe的论文进行比率测试
 for i, (m, n) in enumerate(matches):
+     if len(good) > 10:
+        break
     if m.distance < 0.8*n.distance:
         good.append(m)
         pts2.append(kp2[m.trainIdx].pt)
