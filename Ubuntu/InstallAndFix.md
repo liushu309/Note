@@ -36,10 +36,24 @@ splash后加nomodeset
 
 
 11> 显卡安装  
-1. 使用高版本的离线文件安装nvidia-driver，比如cuda11.0, 不要使用sudo apt install nvidia-driver-460之类
-2. 亮度调节
+1. 在安装显卡之前，先使用集显将亮度调低，再安装nvidia-smi
+2. 使用高版本的离线文件安装nvidia-driver，比如cuda11.0, 不要使用sudo apt install nvidia-driver-460之类
+3. 亮度调节
 
         sudo add-apt-repository ppa:apandada1/brightness-controller
         sudo apt update
         sudo apt install brightness-controller
         brightness-controller
+
+12> grub文件配置
+
+    #GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nomodeset"
+    #GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_osi=Linux"
+    #GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_backlight=vendor"
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash text"
+    #属性名：内核启动参数的默认值
+    #值说明：quiet splash为不显示启动信息，安静的启动，如值为空则显示启动信息
+
+    #GRUB_CMDLINE_LINUX="acpi_backlight=vendor"
+    #GRUB_CMDLINE_LINUX="acpi_osi=Linux acpi_backlight=vendor"
+    GRUB_CMDLINE_LINUX=""
