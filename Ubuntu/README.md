@@ -275,3 +275,13 @@ https://blog.csdn.net/starzhou/article/details/105493420
 
 ## 31. 有道
     https://github.com/ChestnutHeng/Wudao-dict
+    
+## vsftpd
+    $sudo apt install vsftpd   
+    $sudo vim /etc/vsftpd.conf
+
+    chroot_local_user=YES
+    local_root=/home/liushu/Documents/FTP
+    allow_writeable_chroot=YES
+
+
