@@ -276,7 +276,7 @@ https://blog.csdn.net/starzhou/article/details/105493420
 ## 31. 有道
     https://github.com/ChestnutHeng/Wudao-dict
     
-## vsftpd
+## 32. vsftpd
     $sudo apt install vsftpd   
     $sudo vim /etc/vsftpd.conf
 
