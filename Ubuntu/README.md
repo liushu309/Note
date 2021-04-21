@@ -283,5 +283,5 @@ https://blog.csdn.net/starzhou/article/details/105493420
     chroot_local_user=YES
     local_root=/home/liushu/Documents/FTP
     allow_writeable_chroot=YES
-
+    write_enable=YES
 
