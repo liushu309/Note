@@ -72,7 +72,10 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
 3. 从以前版本前进到后来版本
 
         $ git reflog  
-        $ git reset --hard <edit_id>
+        $ git reset --hard <edit_id>  
+4. 注意两个地方  
+
+        liushu@192.168.0.177:/home/...(1.本地的话用liushu; 2. com后接:再接/)
 
 ### 3. git push 和git pull
     $ git push <远程主机名> <本地分支名>  <远程分支名>
