@@ -14,7 +14,7 @@
     或者进入一个新的目录  
       git init  
     3> 关联  
-      git remote add origin git@github.com/liushu309/test.git       
+      git remote add origin git@github.com:/liushu309/test.git       
       注意这里的写法，是在github.com后加“：”, 而不是加“/”
     4> 推送master分支的所有内容  
       git push -u origin master  
