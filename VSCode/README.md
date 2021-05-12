@@ -10,3 +10,32 @@
 
 ### 4. ubuntu进入函数后返回
 Ctrl + Alt + -
+
+### 5. vscode配置
+主要在configurations中添加args变量,添加str列表,键与值都是str元素
+
+        {
+            "version": "0.2.0",
+            "configurations": [
+                {
+                    "name": "Python: 当前文件",
+                    "type": "python",
+                    "request": "launch",
+                    "program": "${file}",
+                    "args": [
+                        "--net",
+                        "res101",
+                        "--cuda",
+                        "--load_dir",
+                        "models",
+                        "--checksession",
+                        "1",
+                        "--checkepoch",
+                        "2",
+                        "--checkpoint",
+                        "5010"
+                    ],
+                    "console": "integratedTerminal"
+                }
+            ]
+        }
