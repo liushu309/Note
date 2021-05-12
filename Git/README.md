@@ -95,4 +95,9 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
 ### 注意
 结果虽然只下载了选定的文件夹，但是可能.git文件还是全部下载下来了，所以存储空间和下载时间基本没有怎么变
 
+## 6.git不起作用
+    git rm -r --cached .
+    git add .
+    git commit -m 'update .gitignore'   //windows 使用的命令是  
+
 
