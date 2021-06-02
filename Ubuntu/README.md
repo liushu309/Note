@@ -285,3 +285,5 @@ https://blog.csdn.net/starzhou/article/details/105493420
     allow_writeable_chroot=YES
     write_enable=YES
 
+## 33. 禁止ubuntu内核更新
+    sudo apt-mark hold linux-image-generic linux-headers-generic 
