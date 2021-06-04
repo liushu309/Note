@@ -1,8 +1,13 @@
 ## 1. 安装
     sudo apt-get install build-essential
-    sudo apt-get install libgl1-mesa-dev
-    sudo apt-get install libglu1-mesa-dev
-    sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+    #sudo apt-get install libgl1-mesa-dev
+    #sudo apt-get install libglu1-mesa-dev
+    #sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+安装PowerVRSDKSetup-2018_R2.run-x64, 一路默认
+下载地址：https://www.imgtec.com/developers/powervr-sdk-tools/installers/　　
+参考　https://blog.csdn.net/c_china/article/details/86364918　　
+
+    export LD_LIBRARY_PATH=/opt/Imagination/PowerVR_Graphics/PowerVR_Tools/PVRVFrame/Library/Linux_x86_64/
 
 如果提示：“gl\glew.h”: No such file or directory
     sudo apt-cache search glew
