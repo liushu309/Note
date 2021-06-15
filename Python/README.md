@@ -96,3 +96,9 @@ map() 会根据提供的函数对指定序列做映射。
             print("***traceback.print_exception():*** ")
             time.sleep(1)
             traceback.print_exception(*sys.exc_info())
+## 9. python调用shell
+    import subprocess
+    ret = subprocess.Popen('ping www.baidu.com -c 3', stdout = subprocess.PIPE, shell = True)
+    for i in ret.stdout:
+        print(i)
+
