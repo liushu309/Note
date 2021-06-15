@@ -103,6 +103,20 @@ map() 会根据提供的函数对指定序列做映射。
         print(i)
 
 ## 10. python调用ffmpeg对视频进行填充缩放
+先检测数据完整性
+
+    def check_video(file_name):
+        try:
+            # 执行probe执行
+            probe = ffmpeg.probe(file_name)
+            video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'), None)
+            return video_stream
+        except Exception as e:
+            print(e)
+            return None
+
+
+
 -vf video_fileter  
 -i input  
 
