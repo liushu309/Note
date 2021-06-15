@@ -102,3 +102,17 @@ map() 会根据提供的函数对指定序列做映射。
     for i in ret.stdout:
         print(i)
 
+## 10. python调用ffmpeg对视频进行填充缩放
+-vf video_fileter  
+-i input  
+
+    input_name = '3.mp4'
+    out_name = '3_224.mp4'
+    ret = subprocess.Popen('ffmpeg -i  {0} -vf "scale = iw*min(224/iw\, 224/ih):ih*min(224/iw\, 224/ih), pad=224:224:(224-iw*min(224/iw\, 224/ih))/2\:(224-ih*min(224/iw\, 224/ih))/2:black" {1}'.format(input_name, out_name), stdout = subprocess.PIPE, shell = True).communicate() 
+    cap = cv2.VideoCapture('3_224.mp4')
+    ret = True
+    while ret:
+        ret, frame = cap.read()
+        if ret:
+            cv2.imshow('test', frame)
+            cv2.waitKey(10)
