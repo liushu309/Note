@@ -292,3 +292,10 @@ https://blog.csdn.net/starzhou/article/details/105493420
 注意：find ./ -name '这里要加引号'  
 
     grep 'ganmei' `find ./ -name '*.py'`
+
+## 35. tar加密解密
+    加密压缩
+    tar -czvf - file | openssl des3 -salt -k passw0rd -out /path/to/file.tar.gz
+
+    解密解压
+    openssl des3 -d -k passw0rd -salt -in /path/to/file.tar.gz | tar xvf -
