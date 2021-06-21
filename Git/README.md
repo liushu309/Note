@@ -101,3 +101,5 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     git commit -m 'update .gitignore'   //windows 使用的命令是  
 
 
+## 7. gitlab搭建
+    https://blog.csdn.net/EthanCo/article/details/82828097
