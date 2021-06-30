@@ -39,3 +39,5 @@ Ctrl + Alt + -
                 }
             ]
         }
+### 6. 生成c_cpp_properties.json
+  Ctrl+Shift+P 打开命令 输入configuration 点第一个才有 c_cpp_properties.json
