@@ -326,3 +326,11 @@ https://blog.csdn.net/starzhou/article/details/105493420
     user ALL=(ALL:ALL) ALL
     
     sudo chmod -w /etc/sudoers
+
+对于root用户，他的umask值是022。当root用户创建目录时，默认的权限就是用最大权限777去掉相应位置的umask值权限，即对于所有者不必去掉任何权限，对于所属组要去掉w权限，对于其他用户也要去掉w权限，所以目录的默认权限就是755；当root用户创建文件时，默认的权限则是用最大权限666去掉相应位置的umask值，即文件的默认权限是644。
+
+    umask 0007
+    
+其他人没有read, write, exe的
+
+
