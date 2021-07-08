@@ -9,7 +9,7 @@
     set(CMAKE_CXX_COMPILER "g++")#设置C++编译器
     set(CMAKE_CXX_FLAGS "-g -Wall  -I D:/SoftWare/Mingw64/include -L D:/SoftWare/Mingw64/lib")
 
-    set(CMAKE_SH "CMAKE_SH-NOTFOUND")
+    set(CMAKE_SH "CMAKE_SH-NOTFOUND")# 容易和Git中的 sh.exe冲突
 
     project(demo)
 
