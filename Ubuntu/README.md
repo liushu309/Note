@@ -291,6 +291,7 @@ https://blog.csdn.net/starzhou/article/details/105493420
     write_enable=YES
 
 ## 33. 禁止ubuntu内核更新
+    sudo dpkg  --get-selections | grep linux-image
     sudo apt-mark hold linux-image-generic linux-headers-generic 
 
 ## 34. 在目录下查找文件中包含特定内容的位置
