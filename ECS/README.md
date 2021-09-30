@@ -22,6 +22,10 @@
 ## 3. NAT内网穿透
 使用frp
 下载frp
+
+    $ wget https://github.com/fatedier/frp/releases/download/v0.21.0/frp_0.21.0_linux_amd64.tar.gz
+    $ tar -xzvf frp_0.21.0_linux_amd64.tar.gz
+    $ cd frp_0.27.0.0_linux_amd64
 ### 3.1 服务端
 配置frps.ini
 
@@ -49,3 +53,31 @@
 运行
 
     ./frpc -c ./frpc.ini       #运行代码
+
+### 3.3 后台运行
+    // 运行
+    $ nohup ./frps -c frps.ini &
+    // 查看日志
+    $ tail -f nohup.out
+
+### 3.4 多客户端配置
+
+    内网机器1：
+    [ssh]                      <==不同点
+    type = tcp 
+    local_ip = 127.0.0.1
+    local_port = 22
+    remote_port = 6000         <==不同点
+    
+    内网机器2：
+    [ssh1]                     <==不同点
+    type = tcp 
+    local_ip = 127.0.0.1
+    local_port = 22
+    remote_port = 6001         <==不同点
+
+
+
+
+
+
