@@ -139,6 +139,7 @@ map() 会根据提供的函数对指定序列做映射。
 3. pybind11(简单,可调用类)  
 
 pip install pybind11  
+教程: https://zhuanlan.zhihu.com/p/80884925  
 
     #include <pybind11/pybind11.h>
     #include <iostream>
