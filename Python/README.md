@@ -130,3 +130,57 @@ map() 会根据提供的函数对指定序列做映射。
         if ret:
             cv2.imshow('test', frame)
             cv2.waitKey(10)
+
+
+## 11. python调用C++函数/类
+有三种方式:  
+1. ctype(只能调用函数,不能调用类)  
+2. boost_python(编译复杂)  
+3. pybind11(简单,可调用类)  
+
+pip install pybind11  
+
+    #include <pybind11/pybind11.h>
+    #include <iostream>
+    using namespace std;
+    class Hello
+    {
+    public:
+        Hello() {}
+        void say(const std::string s)
+        {
+            std::cout << s << std::endl;
+        }
+    };
+
+    PYBIND11_MODULE(py2cpp, m)
+    {
+        m.doc() = "pybind11 example";
+
+        pybind11::class_<Hello>(m, "Hello")
+            .def(pybind11::init())
+            .def("say", &Hello::say);
+    }
+    // g++ -shared -std=c++11 -fPIC `python3 -m pybind11 --includes` opencvcall.cpp -o py2cpp`python3-config --extension-suffix` -I /usr/local/anaconda3/bin
+
+    //python 调用方式
+    //1, 先通过构造器来构建实例，方法为 模块名.构造器名
+    //2，调用对应的方法， 模块名.方法名
+    //例如本例子需要如下调用
+    // c=py2cpp.Hello()
+    // c.say()
+    
+    //函数方法
+    #include <pybind11/pybind11.h>
+
+    int add( int i, int j ){
+        return i+j;
+    }
+
+    PYBIND11_MODULE( py2cpp, m ){
+        m.doc() = "pybind11 example";
+        m.def("add", &add, "add two number" );
+    }
+
+    //在python中使用 模块名.函数名 来访问
+    //例如本例子为  py2cpp.add(1,2)
