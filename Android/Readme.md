@@ -36,3 +36,10 @@ android6.0以上添加了运行时权限
     $ls-pc#:javac MyTestClass.java
     // 回退到上三层目录cd ../../..,不然找不到类
     $ls-pc#:java com.example.lib.MyTesstClass
+
+## 5. android调用opencv
+### 5.1 android调用C++
+主要利用C++返回类对象指针，调用其它类成员函数时，使用指针函数调用类对象  
+https://blog.csdn.net/xukaiup/article/details/88656558
+### 5.2 andoird调用opencv
+https://www.cnblogs.com/xiaoxiaoqingyi/p/6676096.html
