@@ -38,7 +38,8 @@ android6.0以上添加了运行时权限
     $ls-pc#:java com.example.lib.MyTesstClass
 
 ### 4.3 Java环境搭建
-编写Java文件:HelloMyJni.java
+编写Java文件:HelloMyJni.java  
+
     public class HelloMyJni{
         public native void helloWorld(); // 注意，这个native方法就是调用C语言接口用的
         static{
@@ -48,12 +49,13 @@ android6.0以上添加了运行时权限
             new HelloMyJni().helloWorld();
         }
     }
+    
 编译Java文件并生成java头文件  
 
-    javac -d . HelloMyJni.java // 生成主调用文件,注意:运行时java HelloMyJni, 后面不要加".class"
-    javah -jni HelloMyJni // 生成java头文件 com_hongyu_jni_HelloJni.h
+    javac -d . HelloMyJni.java // 生成主调用文件,注意:运行时java HelloMyJni, 后面不要加".class"  
+    javah -jni HelloMyJni // 生成java头文件 com_hongyu_jni_HelloJni.h  
 
-创建C语言文件，HelloWorld.c  
+创建C语言文件，HelloWorld.c    
 
     #include "jni.h"
     #include "com_hongyu_jni_HelloJni.h"
@@ -67,9 +69,10 @@ android6.0以上添加了运行时权限
 
         }
 
-生成动态链接库文件 libhello.so  
-    #gcc -Wall -fPIC -c HelloWorld.c -I ./ -I $JAVA_HOME/include/linux/ -I $JAVA_HOME/include/ 
-    #gcc -Wall -rdynamic -shared -o libhello.so HelloWorld.o
+生成动态链接库文件 libhello.so   
+
+    #gcc -Wall -fPIC -c HelloWorld.c -I ./ -I $JAVA_HOME/include/linux/ -I $JAVA_HOME/include/   
+    #gcc -Wall -rdynamic -shared -o libhello.so HelloWorld.o  
 
 执行  
 
