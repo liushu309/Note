@@ -188,3 +188,20 @@ pip install pybind11
 ### 11.1 cmake编译pybind11
     https://blog.csdn.net/luolinll1212/article/details/112907469  
     将编译好的文件要整个都放在与源文件相同的地方，注意：只有C++14才有处理pybind重载的功能。
+    
+编译pybind11  
+    git clone https://github.com/pybind/pybind11.git
+    cd pybind11
+    mkdir build
+    cd build
+    cmake ..
+    cmake --build . --config Release --target check
+    make check -j 4
+    
+CMakeLists.txt
+
+    cmake_minimum_required(VERSION 2.8.12)
+    project(example)
+    add_subdirectory(pybind11) # 已经编译完的pybind11
+    pybind11_add_module(example example.cpp)
+
