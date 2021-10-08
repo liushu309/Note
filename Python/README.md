@@ -187,4 +187,4 @@ pip install pybind11
     //例如本例子为  py2cpp.add(1,2)
 ### 11.1 cmake编译pybind11
     https://blog.csdn.net/luolinll1212/article/details/112907469  
-    将编译好的文件要整个都放在与源文件相同的地方
+    将编译好的文件要整个都放在与源文件相同的地方，注意：只有C++14才有处理pybind重载的功能。
