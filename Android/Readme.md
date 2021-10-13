@@ -87,10 +87,10 @@ https://blog.csdn.net/xukaiup/article/details/88656558
 ### 5.2 andoird调用opencv
 https://www.cnblogs.com/xiaoxiaoqingyi/p/6676096.html
 ### 5.3 java数据格式转cv::Mat
-    java的基本数据类型里只有char和byte与C++里的unsigied char和OpenCV里的uchar类型接近，但是还是有区别  
-    比如java char占两个字节，java byte是有符号类型，范围是-128-127，如果要使用java BufferedImage ib = ImageIO.read("*.jpg")  
-    得到的数据类型为int数列，int里根据数据类型是RGB还是RGBA进行每一位的分配，所以有使用的时候，还要对每一bit级别的按位转换  
-    具体是按位与操作(将int(补码)对应位转成无符号byte数据)，如下：
+  java的基本数据类型里只有char和byte与C++里的unsigied char和OpenCV里的uchar类型接近，但是还是有区别  
+  比如java char占两个字节，java byte是有符号类型，范围是-128-127，如果要使用java BufferedImage ib = ImageIO.read("*.jpg")  
+  得到的数据类型为int数列，int里根据数据类型是RGB还是RGBA进行每一位的分配，所以有使用的时候，还要对每一bit级别的按位转换  
+  具体是按位与操作(将int(补码)对应位转成无符号byte数据)，如下：
     
             File file = new File("/home/ls-wq/Documents/DataSet/SIMINARY/CFD3Floor/Image/554/554_00350.jpg");
         // BufferedImage bi = null;
