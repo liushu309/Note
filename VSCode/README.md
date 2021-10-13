@@ -41,3 +41,13 @@ Ctrl + Alt + -
         }
 ### 6. 生成c_cpp_properties.json
   Ctrl+Shift+P 打开命令 输入configuration 点第一个才有 c_cpp_properties.json
+  
+### 7. 配置java环境
+    1. 先安装Language Support for Java(TM) 0.64.1版本的，再装Java Extension Pack
+    2. Ctrl + ","，输入javahome，配置如下：
+    
+    "java.home": "/usr/local/jdk1.8.0_291",
+    "java.requirements.JDK11Warning": false,
+    "java.semanticHighlighting.enabled": true
+    
+    3. 
