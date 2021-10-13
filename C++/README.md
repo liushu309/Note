@@ -35,3 +35,7 @@
 	    }
 	    return 0;
 	}
+
+## 3. 概念
+### 3.1 int * ptr与(int *) ptr
+    int * ptr只是普通的指针声明，而(int *) prt有将ptr指什进行一个强制类型转换
