@@ -1,7 +1,7 @@
 ## 1. 防火墙
     ## 1. 防火墙
     # 安装
-    apt install firewall
+    apt install firewalld
     # 开放端口
     firewall-cmd --zone=public --add-port=22/tcp --permanent
     firewall-cmd --zone=public --add-port=7000-8000/udp --permanent 
