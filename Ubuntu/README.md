@@ -309,13 +309,16 @@ https://blog.csdn.net/starzhou/article/details/105493420
     openssl des3 -d -k passw0rd -salt -in /path/to/file.tar.gz | tar xvf -
 
 ## 36. 创建用户
-    sudo useradd -r -m -s /bin/bash dongyuanxin_2016150127
+    sudo useradd -r -m -s /bin/bash 用户名
   注：   
   1、在Ubuntu18.04系统中，不会在创建用户的时候自动提示设置密码。需要手动执行：sudo passwd dongyuanxin_2016150127命令来设置新用户的密码。  
   2、上面命令的参数意义如下：  
   -r：建立系统账号  
   -m：自动建立用户的登入目录  
-  -s：指定用户登入后所使用的shell   
+  -s：指定用户登入后所使用的shell
+  
+    # 设置密码
+    passwd 用户名
 
 这里采用修改Ubuntu 18.04系统/etc/sudoers文件的方法分配用户权限。因为此文件只有r权限，在改动前需要增加w权限，改动后，再去掉w权限。
 
@@ -326,6 +329,7 @@ https://blog.csdn.net/starzhou/article/details/105493420
 
     #User privilege specification
     root　ALL=(ALL:ALL) ALL
+    # 添加下面一行
     user ALL=(ALL:ALL) ALL
     
     sudo chmod -w /etc/sudoers
