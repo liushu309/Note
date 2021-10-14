@@ -340,6 +340,13 @@ https://blog.csdn.net/starzhou/article/details/105493420
     
 其他人没有read, write, exe的
 
+删除用户
+
+    # 例：删除用户user2
+    userdel user2
+    # 例：删除用户 user3，同时删除他的工作目录
+    userdel –r user3
+
 ## 37. cloc
 使用cloc来统计代码量
 
