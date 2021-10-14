@@ -82,7 +82,7 @@ android6.0以上添加了运行时权限
 
 ## 5. android调用opencv
 ### 5.1 android调用C++
-主要利用C++返回类对象指针，调用其它类成员函数时，使用指针函数调用类对象  
+因为java调用C++通过JNI只能extent "C" 方式调用函数，所以主要利用C++返回类对象指针，再在java类中，通过指针native函数，就相当于使用了C++
 https://blog.csdn.net/xukaiup/article/details/88656558
 ### 5.2 andoird调用opencv
 https://www.cnblogs.com/xiaoxiaoqingyi/p/6676096.html
