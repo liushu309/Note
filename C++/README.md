@@ -17,7 +17,7 @@
 	#include <string.h>
 	int main(int argc, const char *argv[])
 	{
-	    # 写或许可以用fprintf
+	    // 写或许可以用fprintf
 	    FILE *f_obj = fopen("data/label.txt", "r");
 	    char img_dir[128], label[32];
 	    std::vector<std::string> imgs, labels;
