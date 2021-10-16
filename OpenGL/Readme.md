@@ -109,3 +109,113 @@ $vi light.cpp
 
     g++ light.cpp -o sample -lglut -lGL -lGLU
 ./sample
+
+### 1.2 cmake工程示例
+源文件
+        #include <glad/glad.h>
+        #include <GLFW/glfw3.h>
+
+        #include <iostream>
+
+        void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+        void processInput(GLFWwindow *window);
+
+        // settings
+        const unsigned int SCR_WIDTH = 800;
+        const unsigned int SCR_HEIGHT = 600;
+
+        int main()
+        {
+            // glfw: initialize and configure
+            // ------------------------------
+            glfwInit();
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+            glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+        #ifdef __APPLE__
+            glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        #endif
+
+            // glfw window creation
+            // --------------------
+            GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+            if (window == NULL)
+            {
+                std::cout << "Failed to create GLFW window" << std::endl;
+                glfwTerminate();
+                return -1;
+            }
+            glfwMakeContextCurrent(window);
+            glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+            // glad: load all OpenGL function pointers
+            // ---------------------------------------
+            if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+            {
+                std::cout << "Failed to initialize GLAD" << std::endl;
+                return -1;
+            }    
+
+            // render loop
+            // -----------
+            while (!glfwWindowShouldClose(window))
+            {
+                // input
+                // -----
+                processInput(window);
+
+                // render
+                // ------
+                glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+                glClear(GL_COLOR_BUFFER_BIT);
+
+                // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+                // -------------------------------------------------------------------------------
+                glfwSwapBuffers(window);
+                glfwPollEvents();
+            }
+
+            // glfw: terminate, clearing all previously allocated GLFW resources.
+            // ------------------------------------------------------------------
+            glfwTerminate();
+            return 0;
+        }
+
+        // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+        // ---------------------------------------------------------------------------------------------------------
+        void processInput(GLFWwindow *window)
+        {
+            if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+                glfwSetWindowShouldClose(window, true);
+        }
+
+        // glfw: whenever the window size changed (by OS or user resize) this callback function executes
+        // ---------------------------------------------------------------------------------------------
+        void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+        {
+            // make sure the viewport matches the new window dimensions; note that width and 
+            // height will be significantly larger than specified on retina displays.
+            glViewport(0, 0, width, height);
+        }
+
+CMakeLists.txt
+
+        cmake_minimum_required(VERSION 3.9.1)
+
+        project(opengl)
+
+        # glad
+        include_directories(/usr/local/OpenGL/glad/include)
+        add_library(GLAD SHARED /usr/local/OpenGL/glad/src/glad.c)
+
+        # glfw3
+        find_path(GLFW3_INCLUDE_DIR NAME "GLFW/glfw3.h")
+        include_directories(GLFW3_INCLUDE_DIR)
+        find_library(GLFW3_LIBRARY NAMES glfw glfw3)
+
+        # 执行文件
+        add_executable(cleargl hello_window_clear.cpp)
+
+        # 链接文件
+        target_link_libraries(cleargl GLAD ${GLFW3_LIBRARY})
