@@ -44,6 +44,19 @@
 		words.push_back(line);
 		cout << "----->   " << line << endl;
 	    }
+	    
+	    
+	    // 再使用stringstream对字符串进行拆分 
+	    // 注意一定要#include <sstream>
+	    string info = "12 43 43 543";
+            stringstream ss_info(info);
+	    // sstream会自动对数据类型进行转换，
+	    int x, y, w, h;
+	    // ss_info >> x;
+	    // ss_info >> y;
+	    // ss_info >> w;
+	    // ss_info >> h;
+	    ss_info >> x >> y >> w >> h;
 
 
 
