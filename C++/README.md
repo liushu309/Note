@@ -34,6 +34,19 @@
 		std::cout << imgs[i] << " " << labels[i] << std::endl;
 	    }
 	    return 0;
+
+	    // 也可以使用fstream和getline读取一行
+	    fstream f("dictionary.txt"); //创建一个fstream文件流对象
+	    vector<string> words;        //创建一个vector<string>对象
+	    string line;                 //保存读入的每一行
+	    while (getline(f, line))     //会自动把\n换行符去掉
+	    {
+		words.push_back(line);
+		cout << "----->   " << line << endl;
+	    }
+
+
+
 	}
 
 ## 3. 概念
