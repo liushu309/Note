@@ -11,7 +11,7 @@ android6.0以上添加了运行时权限
         mLayout = findViewById(R.id.main_layout);
 
 ## 4. java环境配置
-### 4.1 配置文件
+### 4.1 linux配置文件
     $vi ~/.bashrc
     134 # JAVA_HOME
     export JAVA_HOME=/usr/local/jdk1.8.0_291
@@ -19,6 +19,21 @@ android6.0以上添加了运行时权限
     export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
     export PATH=$PATH:$JAVA_HOME/bin
     export PATH=$PATH:$JAVA_HOME/jre/bin
+### 4.2 win配置
+
+    需要新建系统变量：JAVA_HOME 、CLASSPATH，具体步骤：
+
+    变量名：JAVA_HOME
+    变量值：C:\Program Files\Java\jdk1.8.0_192
+
+    变量名：CLASSPATH
+    变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
+    注意CLASSPATH变量值最前面有个“点”，不要复制丢了！
+
+    变量名：Path（不是新建，原本就有）
+    变量值：%JAVA_HOME%\bin
+    变量值：%JAVA_HOME%\jre\bin
+
 ### 4.2 运行
     package com.example.lib;
 
