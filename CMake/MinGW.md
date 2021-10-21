@@ -1,4 +1,6 @@
 ## 1. 安装MinGW
+https://blog.csdn.net/weixin_43356770/article/details/99766638  
+全选Basic Setup里的内容进行安装  
 一定要是64位的，不然出现什么Thread, posix, win32之类的
 
 ## 2. CMakeLists.txt
