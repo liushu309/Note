@@ -77,6 +77,12 @@
     remote_port = 6001         <==不同点
 
 
+## 4. mysql连接 
+### 4.1 连接远程mysql
+
+    sudo apt-get install mysql-server mysql-client
+    mysql -h 服务器ip地址 -P 3306 -u root -p
+
 
 
 
