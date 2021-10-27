@@ -184,51 +184,51 @@ Ctrl + Alt + -
 
 获取函数如下：
 
-  import os
-  import sys
+    import os
+    import sys
 
 
-  def getLibGDBTaskInfo(input_lib_root, output_file):
+    def getLibGDBTaskInfo(input_lib_root, output_file):
 
-      # 获取opencv include目录
-      text_include_str = ""
-      include_dir = os.path.join(input_lib_root, "include")
-      include_dir_items = os.listdir(include_dir)
-      include_list = [os.path.join(include_dir, sub_dir)
-                      for sub_dir in include_dir_items]
-      include_list.append(include_dir)
-      for line in include_list:
-          temp = f'"-I", "{line}",\n'
-          text_include_str += temp
-      # # print(include_list)
-      # # print(text_include_str)
+        # 获取opencv include目录
+        text_include_str = ""
+        include_dir = os.path.join(input_lib_root, "include")
+        include_dir_items = os.listdir(include_dir)
+        include_list = [os.path.join(include_dir, sub_dir)
+                        for sub_dir in include_dir_items]
+        include_list.append(include_dir)
+        for line in include_list:
+            temp = f'"-I", "{line}",\n'
+            text_include_str += temp
+        # # print(include_list)
+        # # print(text_include_str)
 
-      # 获取opencv libs目录
-      lib_dir = os.path.join(input_lib_root, "lib")
-      lib_items = os.listdir(lib_dir)
-      text_lib_path_str = f'"-L", "{lib_dir}",\n'
-      # print(text_lib_path_str)
+        # 获取opencv libs目录
+        lib_dir = os.path.join(input_lib_root, "lib")
+        lib_items = os.listdir(lib_dir)
+        text_lib_path_str = f'"-L", "{lib_dir}",\n'
+        # print(text_lib_path_str)
 
-      text_lib_str = ""
-      for lib_name in lib_items:
-          # # print(lib_name)
-          if lib_name.endswith(".so"):
-              # print(lib_name, "<====")
-              lib_short_name = lib_name[3:-3]
-              # print(lib_short_name)
-              temp = f'"-l", "{lib_short_name}",\n'
-              text_lib_str += temp
-      # print(text_lib_str)
+        text_lib_str = ""
+        for lib_name in lib_items:
+            # # print(lib_name)
+            if lib_name.endswith(".so"):
+                # print(lib_name, "<====")
+                lib_short_name = lib_name[3:-3]
+                # print(lib_short_name)
+                temp = f'"-l", "{lib_short_name}",\n'
+                text_lib_str += temp
+        # print(text_lib_str)
 
-      # 合并
-      all_string = text_include_str + text_lib_path_str + text_lib_str
-      with open(output_file, "w") as f:
-          f.write(all_string)
+        # 合并
+        all_string = text_include_str + text_lib_path_str + text_lib_str
+        with open(output_file, "w") as f:
+            f.write(all_string)
 
 
-  if __name__ == "__main__":
+    if __name__ == "__main__":
 
-      input_lib_root = "/usr/local/opencv_3.4.15"
-      output_file = "./opencv_task.txt"
-      # getLibGDBTaskInfo(sys.argv[1], sys.argv[2])
-      getLibGDBTaskInfo(input_lib_root, output_file)
+        input_lib_root = "/usr/local/opencv_3.4.15"
+        output_file = "./opencv_task.txt"
+        # getLibGDBTaskInfo(sys.argv[1], sys.argv[2])
+        getLibGDBTaskInfo(input_lib_root, output_file)
