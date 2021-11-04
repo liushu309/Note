@@ -224,6 +224,18 @@ scp是 secure copy的缩写, scp是linux系统下基于ssh登陆进行安全的�
     ffmpeg -i test.mp4 %05d.jpg
 ### 23.3 修改视频大小
     ffmpeg -i  input.mp4 -s 320:240 output.mp4
+
+### 23.4 修改图像大小
+
+    import subprocess
+    import os
+
+    data_set_dir = '/home/ls-wq/Desktop/test'
+    input_files = [os.path.join(data_set_dir, i) for i in os.listdir(data_set_dir)]
+
+    print(input_files)
+    for img_dir in input_files:
+        ret = subprocess.Popen('ffmpeg -i {0} -s 1440*1080 {1} -y'.format(img_dir, img_dir), stdout = subprocess.PIPE, shell = True).communicate()
     
     
 ## 24. 批量kill某个进程
