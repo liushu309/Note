@@ -187,7 +187,8 @@ pip install pybind11
     //例如本例子为  py2cpp.add(1,2)
 ### 11.1 cmake编译pybind11
     https://blog.csdn.net/luolinll1212/article/details/112907469  
-    将编译好的文件要整个都放在与源文件相同的地方，注意：只有C++14才有处理pybind重载的功能。
+    将编译好的文件要整个都放在与源文件相同的地方，注意：只有C++14才有处理pybind重载的功能。  
+    也可以将编译好的文件安装, 再用find_package(pybind11 REQUIRED),再其的一样 
     
 编译pybind11  
 
@@ -278,6 +279,50 @@ mat_warper.cpp
     //}
 
 
+### 11.3 c++调用python
+https://pybind11.readthedocs.io/en/stable/advanced/embedding.html  
+cpp文件: 
+
+    #include <pybind11/embed.h>
+    #include <iostream>
+
+    namespace py = pybind11;
+
+    int main()
+    {
+        py::scoped_interpreter python;
+
+        py::module sys = py::module::import("sys");
+        py::print(sys.attr("path"));
+
+        py::module t = py::module::import("tttt");
+        t.attr("add")(1, 2);
+        return 0;
+    }
+    
+ cmakelists.txt
+ 
+     cmake_minimum_required(VERSION 3.4...3.18)
+    project(example LANGUAGES CXX)
+
+    # add_subdirectory(pybind11)
+    # pybind11_add_module(example test.cpp)
+
+
+    find_package(pybind11)
+    # pybind11_add_module(example test.cpp)
+
+    add_executable(example test.cpp)
+    target_link_libraries(example PRIVATE pybind11::embed)
+
+tttt.py, 放在build文件中
+
+    """tttt.py located in the working directory"""
+
+
+    def add(i, j):
+        print("hello,pybind11")
+        return i + j
 
 
 
