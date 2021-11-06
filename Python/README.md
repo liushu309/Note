@@ -324,5 +324,19 @@ tttt.py, 放在build文件中
         print("hello,pybind11")
         return i + j
 
+### 11.4将纯python脚本转成os文件
+pip install python-dev gcc   
+再写脚本set_up.py
+
+    from distutils.core import setup
+    from Cython.Build import cythonize
+
+    setup(
+        ext_modules=cythonize("add_num.py[即要编译的python文件]")
+    )
+
+python set_up.py build_ext --inplace  
+--inplace是在当前文件生成库
+
 
 
