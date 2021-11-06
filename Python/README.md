@@ -325,7 +325,8 @@ tttt.py, 放在build文件中
         return i + j
 
 ### 11.4将纯python脚本转成os文件
-pip install python-dev gcc   
+sudo apt  install python-dev gcc   
+pip install cython
 再写脚本set_up.py
 
     from distutils.core import setup
