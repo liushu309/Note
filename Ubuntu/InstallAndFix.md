@@ -57,3 +57,15 @@ splash后加nomodeset
     #GRUB_CMDLINE_LINUX="acpi_backlight=vendor"
     #GRUB_CMDLINE_LINUX="acpi_osi=Linux acpi_backlight=vendor"
     GRUB_CMDLINE_LINUX=""
+
+
+## 2win10重装系统修复Ubuntu系统
+使用软碟通制作ubuntu系统启动盘后，try install ubuntu
+
+    $ sudo su
+    $ sudo add-apt-repository ppa:yannubuntu/boot-repair
+    $ apt-get update
+    $ apt-get install boot-repair
+    在dash中搜索boot-repair
+    点recommand repair
+    之后会自动执行
