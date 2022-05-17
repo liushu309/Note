@@ -232,3 +232,20 @@ Ctrl + Alt + -
         output_file = "./opencv_task.txt"
         # getLibGDBTaskInfo(sys.argv[1], sys.argv[2])
         getLibGDBTaskInfo(input_lib_root, output_file)
+
+
+### 9. 在vscode中加入git-bash终端
+1. 设置  
+2. settings.json
+3. 添加设置，代码如下：
+
+    {
+        "terminal.integrated.profiles.windows": {
+            "Git-Bash": {
+                "path": "D:\\SoftWare\\git\\bin\\bash.exe",
+                "args": [],
+                "icon": "terminal-bash"
+            },
+         },
+        "terminal.integrated.defaultProfile.windows": "Git-Bash",
+    }
