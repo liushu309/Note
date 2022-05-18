@@ -340,4 +340,27 @@ python set_up.py build_ext --inplace
 --inplace是在当前文件生成库
 
 
+## 12. python装饰器
+import time
+
+def Time_statistics(装饰器参数):
+    def inner(修饰的函数名):
+        def wraper(*修饰函数参数列表, **修饰函数参数字典):
+
+            # 最后返回的替换代码可能只有下面这些，return ret可能只是为了给装饰器一个类型检查
+            time_start = time.time()                                          # <-----
+            for i in range(装饰器参数):                                        # <-----
+                ret = 修饰的函数名(*修饰函数参数列表, **修饰函数参数字典)         # <-----
+            time_end = time.time()                                            # <-----
+            print(f'{time_end - time_start} time spaced')                     # <-----
+            return ret                                                        # return 好像可以不要，但是不要的话会报错
+        return wraper     
+    return inner
+
+@Time_statistics(10)
+def print_info(info):
+    print(f'{info} ----<')
+
+if __name__ == "__main__":
+    print_info('hello world')
 
