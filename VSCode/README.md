@@ -239,13 +239,14 @@ Ctrl + Alt + -
 2. settings.json
 3. 添加设置，代码如下：
 
-    {
-        "terminal.integrated.profiles.windows": {
-            "Git-Bash": {
-                "path": "D:\\SoftWare\\git\\bin\\bash.exe",
-                "args": [],
-                "icon": "terminal-bash"
-            },
-         },
-        "terminal.integrated.defaultProfile.windows": "Git-Bash",
-    }
+
+      {
+          "terminal.integrated.profiles.windows": {
+              "Git-Bash": {
+                  "path": "D:\\SoftWare\\git\\bin\\bash.exe",
+                  "args": [],
+                  "icon": "terminal-bash"
+              },
+           },
+          "terminal.integrated.defaultProfile.windows": "Git-Bash",
+      }
