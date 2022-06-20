@@ -59,6 +59,9 @@
     $ nohup ./frps -c frps.ini &
     // 查看日志
     $ tail -f nohup.out
+    
+    // 一般脚本后台远行代码
+    nohup /root/runoob.sh > runoob.log 2>&1 &
 
 ### 3.4 多客户端配置
 
