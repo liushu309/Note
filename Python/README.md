@@ -364,3 +364,36 @@ def print_info(info):
 if __name__ == "__main__":
     print_info('hello world')
 
+
+### 13. python发送邮件
+1. 去163获取邮箱发送邮件的授权码    
+2. python代码  
+
+        import smtplib  # 导入PyEmail
+        from email.mime.text import MIMEText
+        import time
+
+        # 邮件构建
+        def send(i):
+            subject = f"【第{i}封】滴滴答答~胖子快收邮件！"  # 邮件标题
+            sender = "wqkj7001@163.com"  # 发送方
+            content = "网雀湖北科技有限公司！"
+            recver = "670602937@qq.com"  # 接收方
+            password = "PMDSGRQAUEXRDSUM" #邮箱授权码
+            message = MIMEText(content, "plain", "utf-8")
+            # content 发送内容     "plain"文本格式   utf-8 编码格式
+
+            message['Subject'] = subject  # 邮件标题
+            message['To'] = recver  # 收件人名称
+            message['From'] = '网雀科技培训报名| 1234124'  # 发件人名称
+
+            smtp = smtplib.SMTP_SSL("smtp.163.com", 994)  # 实例化smtp服务器
+            smtp.login(sender, password)  # 发件人登录
+            smtp.sendmail(sender, [recver], message.as_string())  # as_string 对 message 的消息进行了封装
+            smtp.close()
+            print("发送邮件成功！！")
+
+        if __name__=='__main__':
+            for i in range(1,2):
+                send(i)
+                time.sleep(8)
