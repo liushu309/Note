@@ -379,7 +379,7 @@ if __name__ == "__main__":
             sender = "wqkj7001@163.com"  # 发送方
             content = "网雀湖北科技有限公司！"
             recver = "670602937@qq.com"  # 接收方
-            password = "PMDSGRQAUEXRDSUM" #邮箱授权码
+            password = "XXXXXXXXXXXXXXXX" #邮箱授权码
             message = MIMEText(content, "plain", "utf-8")
             # content 发送内容     "plain"文本格式   utf-8 编码格式
 
