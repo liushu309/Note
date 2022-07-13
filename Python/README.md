@@ -366,6 +366,7 @@ if __name__ == "__main__":
 
 
 ### 13. python发送邮件
+http://t.zoukankan.com/jiliangceshi-p-13220082.html  
 1. 去163获取邮箱发送邮件的授权码    
 2. python代码  
 
