@@ -370,31 +370,38 @@ http://t.zoukankan.com/jiliangceshi-p-13220082.html
 1. 去163获取邮箱发送邮件的授权码    
 2. python代码  
 
-        import smtplib  # 导入PyEmail
+        import smtplib
         from email.mime.text import MIMEText
-        import time
+        from email.mime.multipart import MIMEMultipart
 
-        # 邮件构建
-        def send(i):
-            subject = f"【第{i}封】滴滴答答~胖子快收邮件！"  # 邮件标题
-            sender = "wqkj7001@163.com"  # 发送方
-            content = "网雀湖北科技有限公司！"
-            recver = "670602937@qq.com"  # 接收方
-            password = "XXXXXXXXXXXXXXXX" #邮箱授权码
-            message = MIMEText(content, "plain", "utf-8")
-            # content 发送内容     "plain"文本格式   utf-8 编码格式
-
-            message['Subject'] = subject  # 邮件标题
-            message['To'] = recver  # 收件人名称
-            message['From'] = '网雀科技培训报名| 1234124'  # 发件人名称
-
-            smtp = smtplib.SMTP_SSL("smtp.163.com", 994)  # 实例化smtp服务器
-            smtp.login(sender, password)  # 发件人登录
-            smtp.sendmail(sender, [recver], message.as_string())  # as_string 对 message 的消息进行了封装
-            smtp.close()
-            print("发送邮件成功！！")
-
-        if __name__=='__main__':
-            for i in range(1,2):
-                send(i)
-                time.sleep(8)
+        # 发送邮件相关参数
+        smtpserver = 'smtp.163.com'         # 发件服务器
+        port = 0                            # 端口
+        sender = 'wqkj7001@163.com'         # 发件人邮箱
+        psw = 'xxxxxxxxxxxxxxxx'            # 发件人授权码
+        receiver = ["670602937@qq.com","wqkj7002@163.com"]      # 接收人
+        # 邮件标题
+        subjext = 'python发送附件邮件'
+        # 获取附件信息
+        with open('vue_script.html', "r", encoding='utf-8') as f:
+            body = f.read()
+        message = MIMEMultipart()
+        # 发送地址
+        message['from'] = sender
+        # message['to'] = receiver
+        message['to'] = "无邪"
+        message['subject'] = subjext
+        # 正文
+        body = MIMEText(body, 'plain', 'utf-8')
+        message.attach(body)
+        # 同一目录下的文件
+        att = MIMEText(open('./sample.py', 'rb').read(), 'base64', 'utf-8') 
+        att["Content-Type"] = 'application/octet-stream'
+        # filename附件名称
+        att["Content-Disposition"] = 'attachment; filename="sample.py"'
+        message.attach(att)
+        smtp = smtplib.SMTP()
+        smtp.connect(smtpserver)    # 链接服务器
+        smtp.login(sender, psw)     # 登录
+        smtp.sendmail(sender, receiver, message.as_string())  # 发送
+        smtp.quit()             # 关闭
