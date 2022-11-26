@@ -34,6 +34,14 @@ android6.0以上添加了运行时权限
     变量值：%JAVA_HOME%\bin
     变量值：%JAVA_HOME%\jre\bin
 
+### 4.3 Tomcat配置
+    1. 变量名：CATALINA_HOME, 解压后的路径（参考我的图片来就行）；
+    2. path系统变量，新建输入%CATALINA_HOME%\bin。
+
+    测试：
+    运行startup.bat
+    localhost:8080
+
 ### 4.2 运行
     package com.example.lib;
 
