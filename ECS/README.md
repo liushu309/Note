@@ -86,6 +86,21 @@
     sudo apt-get install mysql-server mysql-client
     mysql -h 服务器ip地址 -P 3306 -u root -p
 
+### 4.2 安装后登录密码及设置
+没有设置root密码的情形
+    /etc/mysql/debian.cnf文件中，找到对应的debian-sys-maint用户名，注意这里不是root!，再输入对应的密码：
+    在终端上输入mysql -u debian-sys-maint -p，遇见输入密码的提示直接回车即可,进入MySQL后，分别执行下面三句话：
+    use mysql;  然后敲回车
+    update user set authentication_string=password("你的密码") where user="root";  然后敲回车
+    flush privileges;  然后敲回车
+    重启
+远程：
+    修改/etc/mysql/mysql.conf.d/mysqld.cnf配置文件。
+    打开配置文件，找到bind-address = 127.0.0.1这一行
+    改为bind-address = 0.0.0.0即可或简单一点注释掉也行
+    修改完成保存后，需要重启MySQL服务才会生效
+    
+
 
 
 
