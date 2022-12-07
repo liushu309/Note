@@ -98,8 +98,18 @@
     重启  
 
 远程：   
+
+    1. 改表法  
     
-    修改/etc/mysql/mysql.conf.d/mysqld.cnf配置文件。  
+    use mysql;
+    update user set host = '%' where user = 'root';
+    flush privileges;
+    quit;
+    重启
+    systemctl mysql restart
+    
+    2. 修改/etc/mysql/mysql.conf.d/mysqld.cnf配置文件。  
+    
     打开配置文件，找到bind-address = 127.0.0.1这一行  
     改为bind-address = 0.0.0.0即可或简单一点注释掉也行  
     修改完成保存后，需要重启MySQL服务才会生效  
