@@ -97,10 +97,24 @@
     ***注意，这里最好也把debian-sys-maint的密码也改了，因为如果服务器的密码被知道了，所有的信息别人也看得见。
     flush privileges;  然后敲回车  
     重启  
+    
+debian-sys-maint给root赋权  
+
+    使用debian-sys-maint账号给root账号提权，不然使用root账号无法创建、删除database;
+    GRANT ALL PRIVILEGES ON *.* TO root@'localhost' IDENTIFIED BY '123456'  with grant option;
+    查看权限，一般出现两行可能是权限最大的，如果有很长的一串显示转行，那么可能权限不够
+    show grants for 'root'@'localhost';
+    mysql> show grants for 'root'@'localhost';
+    +---------------------------------------------------------------------+
+    | Grants for root@localhost                                           |
+    +---------------------------------------------------------------------+
+    | GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION |
+    | GRANT PROXY ON ''@'' TO 'root'@'localhost' WITH GRANT OPTION        |
+    +---------------------------------------------------------------------+
 
 远程：   
 
-    1. 改表法  
+    1. 改表法（最好不要使用，因为加降低安全性，被要BTC）  
     
     use mysql;
     update user set host = '%' where user = 'root';
