@@ -94,6 +94,7 @@
     在终端上输入mysql -u debian-sys-maint -p，遇见输入密码的提示直接回车即可,进入MySQL后，分别执行下面三句话：  
     use mysql;  然后敲回车  
     update user set authentication_string=password("你的密码") where user="root";  然后敲回车  
+    ***注意，这里最好也把debian-sys-maint的密码也改了，因为如果服务器的密码被知道了，所有的信息别人也看得见。
     flush privileges;  然后敲回车  
     重启  
 
