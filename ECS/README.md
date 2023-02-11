@@ -134,7 +134,7 @@ debian-sys-maint给root赋权
 方法一 进入命令行  
 mysql –u用户名 –p密码 –D数据库【sql脚本文件路径全名】，示例：
 
-    mysql –uroot –p123456 -Dtest /home/zj/create_table.sql
+    mysql –uroot –p123456 -Dtest</home/zj/create_table.sql
 
 方法二 进入mysql的控制台后，使用source命令执行  
 Mysqlsource 【sql脚本文件的路径全名】 或 Mysql\. 【sql脚本文件的路径全名】，示例：
