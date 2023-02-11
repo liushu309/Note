@@ -141,3 +141,6 @@ Mysqlsource 【sql脚本文件的路径全名】 或 Mysql\. 【sql脚本文件�
 
     source /home/zj/create_table.sql
 
+导入失败，如： (HY000): Unknown collation: 'utf8mb4_0900_ai_ci'，尝试以下步骤：  
+1. 把文件中的所有的utf8mb4_0900_ai_ci替换为utf8_general_ci;  
+2. 以及utf8mb4替换为utf8。  
