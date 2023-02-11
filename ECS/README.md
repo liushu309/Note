@@ -130,7 +130,14 @@ debian-sys-maint给root赋权
     修改完成保存后，需要重启MySQL服务才会生效  
 
 
+### 4.3 mysql 怎么导入/执行.SQL（存储过程）文件
+方法一 进入命令行  
+mysql –u用户名 –p密码 –D数据库【sql脚本文件路径全名】，示例：
 
+    mysql –uroot –p123456 -Dtest /home/zj/create_table.sql
 
+方法二 进入mysql的控制台后，使用source命令执行  
+Mysqlsource 【sql脚本文件的路径全名】 或 Mysql\. 【sql脚本文件的路径全名】，示例：
 
+    source /home/zj/create_table.sql
 
