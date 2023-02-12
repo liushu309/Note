@@ -17,6 +17,7 @@
         <version>1.1.20</version>
     </dependency>
 ### 1.2 application.properties文件中配置数据库连接的依赖
+    server.port=8080
     spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
     spring.datasource.driver-class-name=com.mysql.jdbc.Driver
     spring.datasource.url=jdbc:mysql://localhost:3306/mydb
