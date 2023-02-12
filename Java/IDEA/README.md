@@ -8,3 +8,18 @@
 ## 3. 部署后运行jar文件
 
   nohup java -jar filename-0.0.1-SNAPSHOT.jar > log.file 2>&1 &
+
+## 4. 跨域问题
+这个问题主要在服务端进行设置，在Controller类的方法上面，加@CrossOrigin，如下：  
+
+    @RestController
+    public class RegisterManage {
+        @Autowired
+        RegisterMapper registerMapper;
+        @CrossOrigin
+        @PostMapping("/updata")
+        public int registeData(@RequestBody Register register){
+            int result = registerMapper.insert(register);
+            return result;
+        }
+    }
