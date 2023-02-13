@@ -12,8 +12,3 @@ help->SSL Proxying->Install Charles Root Certificate->安装证书->本地计算
 Proxy->SSL proxying setting->Enable SSL Proxying->Add->Prot:443(Ip不管它)->OK;
 ### 7. 网页断点
 在对应的网页上点击鼠标右键->breakpoint，在消息进会停，修改了报文后，再点击execute可以将消息推送出去。
-### 8. 激活
-打开Charles ==> Help ==> Register Charles => 输入  
-
-    Registered Name ： https://zhile.io  
-    License Key：48891cf209c6d32bf4  
