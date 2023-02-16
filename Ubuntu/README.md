@@ -51,7 +51,7 @@
 
 ## 2. 五笔输入法安装
   1> sudo apt-get install fcitx-table-wubi，重启  
-  2> Ubuntu16.04在System Setting->Language Support中(Ubuntu18.04 Setting)，最下面Keyboard input method system，由ibus切换成fcitx(18.04和20.04不需要，还是ibus)  
+  2> Ubuntu16.04在System Setting->Language Support中(Ubuntu18.04 Setting)，最下面Keyboard input method system，由ibus切换成fcitx(18.04和20.04不需要，还是ibus)  Manage Installed Language
   3> 在桌面最右上角，点击输入法->Text Entry Setting...->添加wubi 和 pinyin (18.04是“汉语”点进去，不需要进行修改) 
   4> 繁体简体切换：shift + ctrl + f
   
