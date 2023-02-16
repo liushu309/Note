@@ -54,7 +54,8 @@
   2> Ubuntu16.04在System Setting->Language Support中(Ubuntu18.04 Setting)，最下面Keyboard input method system，由ibus切换成fcitx(18.04和20.04不需要，还是ibus)  
   3> 在桌面最右上角，点击输入法->Text Entry Setting...->添加wubi 和 pinyin (18.04是“汉语”点进去，不需要进行修改) 
   4> 繁体简体切换：shift + ctrl + f
-  5> 18.04的比例缩放问题输入以下命令：  
+  
+## -2. 18.04的比例缩放问题  
   
       gsettings set org.gnome.desktop.interface text-scaling-factor 1.3
       ls-pc$ vi ~/.bashrc 
