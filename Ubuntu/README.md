@@ -58,8 +58,6 @@
 ## -2. 18.04的比例缩放问题  
   
       gsettings set org.gnome.desktop.interface text-scaling-factor 1.3
-      ls-pc$ vi ~/.bashrc 
-      export GIO_EXTRA_MODULES=/usr/lib/x86_64-linux-gnu/gio/modules/ 
 
 ## 3. 不自动隐藏菜单栏
   SystemSetting->Appearance->Behavior, 选In the menu bar和Always displayed
