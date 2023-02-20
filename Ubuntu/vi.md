@@ -65,4 +65,17 @@
     ：'<,'>s/old/new/g                #先visual模式下选择要替换的区域 
     
 ## 8. 分窗打开文件 
-    ：sp test.py
+同时打开多个窗口  
+
+    vim -o liushu_1.txt liushu_2.txt
+
+在使用过程中打开多个窗口  
+
+    :split liushu_2.txt
+    # 或者
+    :sp liushu_2.txt
+
+窗口之间的切换  
+
+    # 循环切换
+    ctrl + w + w
