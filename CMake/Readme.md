@@ -10,3 +10,5 @@
     include_directories(/usr/include/jsoncpp)
     # 通配符查找很多的库
     file(GLOB(通配符flag) JSON_LIB(自定义名称) "/usr/lib/x86_64-linux-gnu/*.so")
+    # 例如
+    FILE(GLOB PJSIP_LIB "/usr/local/PJSip/lib/*.a")
