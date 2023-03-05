@@ -1,3 +1,33 @@
+    =================================== 简明 =================================
+    ├── 1.jpeg
+    ├── build
+    ├── CMakeLists.txt
+    ├── main.cpp
+    └── mymath
+        ├── add_func.cpp
+        ├── add_func.h
+        └── CMakeLists.txt
+
+    cmake_minimum_required(VERSION 3.16)
+
+    project(liushu)
+
+    add_subdirectory(mymath)
+
+    include_directories(/usr/local/OpenCV/OpenCV-3.4.15/include)
+
+    FILE(GLOB OPENCV_LIB "/usr/local/OpenCV/OpenCV-3.4.15/lib/*.so")
+
+    add_executable(hello main.cpp)
+
+    target_link_libraries(hello mymath ${OPENCV_LIB})
+
+    # ======================= mymath ===========================
+    # add_library(mymath add_func.cpp)  
+
+
+
+    # ========================== 详细教程 =======================================
     ├── CMakeLists.txt
     ├── COPYRIGHT
     ├── doc
