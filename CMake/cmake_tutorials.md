@@ -1,4 +1,5 @@
     =================================== 简明 =================================
+    创建build文件，cd build, cmake .., make, ./hello
     ├── 1.jpeg
     ├── build
     ├── CMakeLists.txt
