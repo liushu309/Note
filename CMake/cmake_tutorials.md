@@ -9,20 +9,20 @@
         └── CMakeLists.txt
 
     cmake_minimum_required(VERSION 3.16)
-
+    # 工程名称
     project(liushu)
-
+    # 自己开发的库目录
     add_subdirectory(mymath)
-
+    # opencv头文件目录（自己开发的库目录，在add_subdirectory后不需要在CMakeLists.txt文件中配置include path）
     include_directories(/usr/local/OpenCV/OpenCV-3.4.15/include)
-
+    # 使用正则表达式”...*.so“来匹配特定目录下，所有名称中以.so结尾的文件（动态链接库格式）的文件名称（包含绝对路径），将基放入自定义变量OPENCV_LIB中
     FILE(GLOB OPENCV_LIB "/usr/local/OpenCV/OpenCV-3.4.15/lib/*.so")
-
+    # 生成可执行文件hello
     add_executable(hello main.cpp)
-
+    # 将可执行文件hello和所有库文件进行链接
     target_link_libraries(hello mymath ${OPENCV_LIB})
 
-    # ======================= mymath ===========================
+    # ======================= mymath 文件中的CMakeLists.txt===========================
     # add_library(mymath add_func.cpp)  
 
 
