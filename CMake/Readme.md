@@ -4,6 +4,10 @@
 
     # 查看库所在路径
     dpkg -L 库名
+    # whereis
+    whereis 库名
+    # 推荐查找方式（）
+    locate 库名
     # 第一种，查找单一库文件
     # find_library(JSONCPP（自定义名） NAMES（可以取的名字flag） jsoncpp(可能取的名字)
     #              HINTS（可能存在的路径） /usr/lib/x86_64-linux-gnu)
