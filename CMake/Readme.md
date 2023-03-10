@@ -28,6 +28,10 @@
     # 可能会被cmake认为是自定义的生成目标，file方式获取来的库目录都是路径加上库的名称，之间使用分号进行分隔，可能会被
     # cmake认为是一个库的，所以无法链接，所以使用最为通常的方式
     target_link_libries(${PROJECT_NAME} -lopencv_core -lopencv_huixx ...)
+    
+### 1.3 cmake Release和Debug版本设置 
+
+    set(CMAKE_BUILD_TYPE Debug)
  
 
 
