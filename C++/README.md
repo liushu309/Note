@@ -92,3 +92,16 @@
     #%t表示时间
     #这三个参数可加可不加
     
+### 4.2 gdb调试正在运行的程序
+以root用户进行调试，并且需要多n或者s几下，因为运行的程序可能也有其它的内容，不只是程序代码
+
+	62	../sysdeps/posix/sleep.c: 没有那个文件或目录.
+	(gdb) n
+	64	in ../sysdeps/posix/sleep.c
+	(gdb) n
+	test1 () at error.cpp:12
+	12	  i++;
+
+
+
+
