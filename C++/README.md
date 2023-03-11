@@ -78,3 +78,17 @@
     
   这里考虑的就是a[]中的a应该是数组名类型，而a+1当然指针的话，应该指的下一个数组，而不是下一个.
 
+## 4. gdb调试
+### 4.1 ubuntu开启core文件
+    
+    # 1. 开启
+    ulimit -c unlimited 
+    ＃ 设置后在ulimit -c 查看，结果为unlimited
+    ulimit -c
+    # 以root用户写入
+    root@ls-pc:echo  "core-%e-%p-%t" > /proc/sys/kernel/core_pattern
+    #%e表示可执行程序
+    #%p表示进程id
+    #%t表示时间
+    #这三个参数可加可不加
+    
