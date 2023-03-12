@@ -42,6 +42,22 @@ Ctrl + Alt + -
 ### 6. 生成c_cpp_properties.json
   Ctrl+Shift+P 打开命令 输入configuration 点第一个才有 c_cpp_properties.json
   
+  也可以在"args"中加一行代码，就可以了：  
+  
+      "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ 生成活动文件",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "`pkg-config --cflags --libs --static libpjproject`"
+            ],
+  
 ### 7. 配置java环境
     1. 先安装Language Support for Java(TM) 0.64.1版本的，再装Java Extension Pack
     2. Ctrl + ","，输入javahome，配置如下：
@@ -232,6 +248,9 @@ Ctrl + Alt + -
         output_file = "./opencv_task.txt"
         # getLibGDBTaskInfo(sys.argv[1], sys.argv[2])
         getLibGDBTaskInfo(input_lib_root, output_file)
+
+
+
 
 
 ### 9. 在vscode中加入git-bash终端
