@@ -68,5 +68,9 @@ MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp?
 -S: 表示将安装的信息记录到package.json
     npm i element-ui -S
     
-### 6.2 
+### 6.2 全局注册
+    //vue 3.x
+    app.use(ElementPlus)
+    //vue 2.x
+    Vue.use(ElementPlus)
 
