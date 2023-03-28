@@ -23,7 +23,7 @@ MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp?
     <script>
     // 在对应的文件夹下「导入」组件，components
     import HelloWorld from './components/HelloWorld.vue'
-
+    // script里面必需要有export。与外面的import是对应的
     export default {
       // 当前文件组件名
       name: 'App',
