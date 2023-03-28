@@ -27,9 +27,20 @@ MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp?
     export default {
       // 当前文件组件名
       name: 'App',
+      // 
+      props:['titles']
       // 注册组件名，已经写好的组件名称
       components: {
         HelloWorld
-      }
+      },
+      data:function(){
+        return:{
+                title:"小金刚"
+            }
+      },
+      methons{
+          
+        }
+        
     }
     </script>
