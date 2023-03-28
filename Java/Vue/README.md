@@ -16,3 +16,19 @@
 
 ## 4. vue项目
 MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp? 
+
+## 5. 组件的使用
+在<script>标签下，需要导入和注册两个步骤：
+
+    <script>
+    // 在对应的文件夹下「导入」组件，components
+    import HelloWorld from './components/HelloWorld.vue'
+
+    export default {
+      name: 'App',
+      // 注册组件
+      components: {
+        HelloWorld
+      }
+    }
+    </script>
