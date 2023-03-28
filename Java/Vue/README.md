@@ -44,3 +44,11 @@ MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp?
         
     }
     </script>
+    
+## 6. elements-ui使用
+### 6.1 安装
+-S: 表示将安装的信息记录到package.json
+    npm i element-ui -S
+    
+    
+
