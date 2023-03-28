@@ -25,8 +25,9 @@ MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp?
     import HelloWorld from './components/HelloWorld.vue'
 
     export default {
+      // 当前文件组件名
       name: 'App',
-      // 注册组件
+      // 注册组件名，已经写好的组件名称
       components: {
         HelloWorld
       }
