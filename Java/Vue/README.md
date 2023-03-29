@@ -137,3 +137,18 @@ Vue适合做单页面的项目，VueRouter用来控制不同组件的显示，�
         this.$router.push('movie/${id}')
     ...
 
+
+## 8 Vuex
+    用于组件之间数据的转递。父组件和子组件可以通过props传递，但是兄弟组件不可以这样。
+### 8.1 安装
+    
+    npm install vuex@next
+
+### 8.2 使用
+    每个Vuex核心都是一个store全局对象，主要有5个重要的概念：State, Getter, Mutation, Action, Module.  
+    state： 统一定义公共数据（类似于data(){return {a:1, b:2，xxxxxx}}）
+    mutations ： 使用它来修改数据(类似于methods)
+    getters： 类似于computed(计算属性，对现有的状态进行计算得到新的数据-------派生 )
+    actions： 发起异步请求
+    modules： 模块拆分
+  
