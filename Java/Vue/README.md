@@ -74,3 +74,54 @@ MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp?
     //vue 2.x
     Vue.use(ElementPlus)
 
+
+## 7. VueRouter
+Vue适合做单页面的项目，VueRouter用来控制不同组件的显示，比如components目录下的xxx.vue文件，设定不同组件和路径的映射
+### 7.1 安装
+    npm install vue-router@3
+
+### 7.2 使用简介
+    App.vue
+    <!-- 声明路由链接 -->
+    <router-link to="/discover">发现音乐</router-link>
+    <!-- 声明路由占位标签 -->
+    <router-view></router-view>
+    
+    ├── components
+    │   └── HelloWorld.vue
+    └── router
+        └── index.js
+    router文件中的index.js
+    import VueRouter from "Vue-router";
+    import Vue from "vue";
+    import Discover from "../components/Discover.vue"
+    Vue.use(VueRouter)
+    
+    // 2. 定义路由
+    // 每个路由应该映射一个组件。 其中"component" 可以是
+    // 通过 Vue.extend() 创建的组件构造器，
+    // 或者，只是一个组件配置对象。
+    // 我们晚点再讨论嵌套路由。
+    const routes = new VueRouter(
+        routers:[
+            { path: '/discover', component: Discover }
+        ]
+    )
+
+    export default router
+    
+    
+    
+    <!-- main.js -->
+    import Vue from 'vue'
+    import App from './App.vue'
+    import router from "./router"
+
+    Vue.config.productionTip = false
+
+    new Vue({
+      render: h => h(App),
+      <!-- 添加了这一行 -->
+      router:router 
+    }).$mount('#app')
+
