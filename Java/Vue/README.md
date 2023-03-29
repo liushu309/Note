@@ -104,7 +104,8 @@ Vue适合做单页面的项目，VueRouter用来控制不同组件的显示，�
     // 我们晚点再讨论嵌套路由。
     const routes = new VueRouter(
         routers:[
-            { path: '/discover', component: Discover },
+            { path: '/discover', component: Discover, children: {
+                path:'xxx', component:'child_name'}},
             <!-- 重定向 -->
             { path: '/', redirect: Discover}
         ]
