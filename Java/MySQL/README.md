@@ -7,7 +7,7 @@ mysql服务没有启动，无法登录，去服务那里启动就可以了。（
 
     sudo vim /etc/my.cnf
 
-    [mysqld]
+    [mysqld]  
     skip-grant-tables
 
 2. 免密登录，刷新权限表
