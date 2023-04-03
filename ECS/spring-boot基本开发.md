@@ -1,3 +1,4 @@
+# 基本开发
 ## 1. 配置两个地方
 New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
 ### 1.1 pom.xml文件中的依赖
@@ -105,3 +106,162 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
         <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    
+# 2. 接收上传文件与拦截器
+## 2.1 接收文件
+前端用postman进行测试，用body/form-data输入两个参数：<Test>file_name:liushu, <file>f:<select file>，注意参数名与函数参数名一致。
+    package com.example.filter.controller;
+
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.RestController;
+    import org.springframework.web.multipart.MultipartFile;
+
+    import javax.servlet.http.HttpServletRequest;
+    import java.io.File;
+    import java.io.IOException;
+
+    @RestController
+    public class FilterManager {
+        @PostMapping("/updata")
+        public String updata(String file_name, MultipartFile f, HttpServletRequest request) throws IOException {
+            System.out.println("file_name");
+            System.out.println(f.getContentType());
+            System.out.println(f.getOriginalFilename());
+
+    //        上传后，才文件放在临时文件夹：C:/Users/ls/AppData/Local/Temp/tomcat-docbase.8080.5450699450388427383/upload
+    //        http://localhost:8080/upload/1.webp可以访问图片
+    //        spring.mvc.static-path-pattern=/**
+    //        http://localhost:8080/image/upload/1.webp才可以访问图片
+            String save_path = request.getServletContext().getRealPath("/upload/");
+            // 注意：这里的路径和src/resources/static路径不在同一个地方，部署以后，虽然访问图片路径分别是
+            // http://localhost:8080/image/upload/1.webp 上传后浏览器访问
+            // http://localhost:8080/image/2.webp  后端之前放置的图片src/resources/static/2.webp
+            // 但是相同的网络访问路径，并不代表两张图片路径相同部分代表相同的物理路径：http://localhost:8080/image
+            // 后端中的static文件夹中的文件可能被打包到jar中去了
+            System.out.println(save_path);
+            saveFile(f, save_path);
+            return "上传成功";
+        }
+
+        public void saveFile(MultipartFile f, String save_path) throws IOException {
+            File dir = new File(save_path);
+            if(!dir.exists()){
+                dir.mkdir();
+            }
+
+            File file = new File(save_path + f.getOriginalFilename());
+            f.transferTo(file);
+        }
+
+        @GetMapping("/updata")
+        public String updateGet(){
+            return "is ok!";
+        }
+
+        @GetMapping("/image/sea")
+        public String imageSea(){
+            return "this is the sea!";
+        }
+    }
+
+## 2.2 拦截器
+需要进行拦截器的定义和注册两部
+### 2.2.1 拦截器定义
+完成接口HandlerInterceptor中的三个函数：preHandle（拦截前）、postHandle（拦截后）、afterCompletion（前端渲染后）即可：
+    
+    package com.example.filter.controller;
+
+    import org.springframework.web.servlet.HandlerInterceptor;
+    import org.springframework.web.servlet.ModelAndView;
+
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+
+    public class FilterController1 implements HandlerInterceptor {
+        @Override
+        public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+            HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+            System.out.println("/image/**     postHandle accessed ");
+        }
+
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+            HandlerInterceptor.super.preHandle(request, response, handler);
+            System.out.println("/image/**     preHandle accessed");
+            return true;
+        }
+
+        @Override
+        public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+            HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+            System.out.println("/image/**     afterCompletion accessed");
+        }
+    }
+
+类似有FilterController2类的定义，只是定义打印内容为"/image/sea/**"，其它不变：
+    
+    package com.example.filter.controller;
+
+    import org.springframework.web.servlet.HandlerInterceptor;
+    import org.springframework.web.servlet.ModelAndView;
+
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+
+    public class FilterController2 implements HandlerInterceptor {
+        @Override
+        public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+            HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+            System.out.println("/image/sea/** postHandle accessed");
+        }
+
+        @Override
+        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+            HandlerInterceptor.super.preHandle(request, response, handler);
+            System.out.println("/image/sea/** preHandle accessed");
+            return true;
+        }
+
+        @Override
+        public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+            HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+            System.out.println("/image/sea/** afterCompletion accessed");
+        }
+    }
+
+### 2.2.2 拦截器的注册
+主要完成接口WebMvcConfigurer，在addInterceptors方法中进行注册：
+
+    package com.example.filter.controller;
+
+    import org.springframework.stereotype.Controller;
+    import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+    import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+    @Controller
+    public class ConfigController implements WebMvcConfigurer {
+        @Override
+        public void addInterceptors(InterceptorRegistry registry) {
+            WebMvcConfigurer.super.addInterceptors(registry);
+
+            registry.addInterceptor(new FilterController1()).addPathPatterns("/image/**");
+            registry.addInterceptor(new FilterController2()).addPathPatterns("/image/sea/**");
+        }
+    }
+
+使用上面接收文件的FilterManager类，run一下：
+
+    2023-04-03 21:01:58.010  INFO 7416 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing ...
+    2023-04-03 21:01:58.012  INFO 7416 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet ...
+    2023-04-03 21:01:58.016  INFO 7416 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+    /image/**     preHandle accessed
+    /image/sea/** preHandle accessed
+    /image/sea/** postHandle accessed
+    /image/**     postHandle accessed
+    # === 后端返回给前端，前端渲染后
+    /image/sea/** afterCompletion accessed
+    /image/**     afterCompletion accessed    
+
+    
