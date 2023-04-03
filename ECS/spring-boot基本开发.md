@@ -110,7 +110,8 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
     
 # 2. 接收上传文件与拦截器
 ## 2.1 接收文件
-前端用postman进行测试，用body/form-data输入两个参数：<Test>file_name:liushu, <file>f:<select file>，注意参数名与函数参数名一致。
+前端用postman进行测试，用body/form-data输入两个参数：file_name:liushu, f：（选择文件），注意参数名与函数参数名一致。
+    
     package com.example.filter.controller;
 
     import org.springframework.web.bind.annotation.GetMapping;
@@ -166,10 +167,10 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
         }
     }
 
-## 2.2 拦截器
-需要进行拦截器的定义和注册两部
-### 2.2.1 拦截器定义
-完成接口HandlerInterceptor中的三个函数：preHandle（拦截前）、postHandle（拦截后）、afterCompletion（前端渲染后）即可：
+## 2.2 拦截器  
+需要进行拦截器的定义和注册两部  
+### 2.2.1 拦截器定义  
+完成接口HandlerInterceptor中的三个函数：preHandle（拦截前）、postHandle（拦截后）、afterCompletion（前端渲染后）即可：  
     
     package com.example.filter.controller;
 
@@ -252,6 +253,7 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
     }
 
 使用上面接收文件的FilterManager类，run一下：
+    
 
     2023-04-03 21:01:58.010  INFO 7416 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing ...
     2023-04-03 21:01:58.012  INFO 7416 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet ...
