@@ -1,7 +1,7 @@
-# 基本开发
-## 1. 配置两个地方
+# 1 基本开发
+## 1.1 配置两个地方
 New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
-### 1.1 pom.xml文件中的依赖
+### 1.1.1 pom.xml文件中的依赖
     注意，对于java1.8，这里使用的是spring-boot.2.7.6，使用3.0.0以上的版本会报错
     <dependency>
         <groupId>com.baomidou</groupId>
@@ -18,7 +18,7 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
         <artifactId>druid-spring-boot-starter</artifactId>
         <version>1.1.20</version>
     </dependency>
-### 1.2 application.properties文件中配置数据库连接的依赖
+### 1.1.2 application.properties文件中配置数据库连接的依赖
     server.port=8080
     spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
     spring.datasource.driver-class-name=com.mysql.jdbc.Driver
@@ -27,7 +27,7 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
     spring.datasource.password=123456
     mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 
-## 2 总体文件结构
+## 1.2 总体文件结构
     └─com
         └─liushu
             └─wangquetrain
@@ -40,7 +40,7 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
                 └─WangQueTrainApplication.java
 
 
-## 1. 创建实体(entity)
+### 1.2.1 创建实体(entity)
 在xxxAplication.java同级目录下，创建文件夹（package）和对应的类名，注意最好类名为表名，成员属性为数据库表中字段名称，方便映射：  
 
     private Long id;
@@ -60,7 +60,7 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
     ...
     
 
-## 2. 创建映射Mapper接口
+## 1.2.2 创建映射Mapper接口
 1. 创建Mapper接口，在后面使用自动注入的方式使用它，注意这里只是接口，不是创建一个java类，注意接口后还要写extends BaseMapper<Register>， 注意这里使用的是interface而不是class  
 
         @Mapper
@@ -277,4 +277,6 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
     /image/sea/** afterCompletion accessed
     /image/**     afterCompletion accessed    
 
+
+# 3. MyBatis多表查询和分页查询
     
