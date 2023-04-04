@@ -43,11 +43,22 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
 ## 1. 创建实体(entity)
 在xxxAplication.java同级目录下，创建文件夹（package）和对应的类名，注意最好类名为表名，成员属性为数据库表中字段名称，方便映射：  
 
-    public class Register {
-    public Long id;                     // 记录id
-    public String name;                 // 用户名
-    public String tel;                  // 电话号码
+    private Long id;
+    private String name;
+    private String tel;
+    private String id_card;
+    private String org_name;
+    private String business;
+    private String profession;
+    private String mail_addr;
+    private String invoice_title;
+    private String taxpayer_id;
+    private String Time;
+    
     ...
+    Alt + Insert 生成Get()和Set()方法，以及toString()方法
+    ...
+    
 
 ## 2. 创建映射Mapper接口
 1. 创建Mapper接口，在后面使用自动注入的方式使用它，注意这里只是接口，不是创建一个java类，注意接口后还要写extends BaseMapper<Register>， 注意这里使用的是interface而不是class  
