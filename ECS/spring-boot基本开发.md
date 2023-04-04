@@ -50,7 +50,7 @@ New Project -> Spring Initializr -> ... -> "打钩" Web/Spring Web -> ...
     ...
 
 ## 2. 创建映射Mapper接口
-1. 创建Mapper接口，在后面使用自动注入的方式使用它，注意这里只是接口，不是创建一个java类，注意接口后还要写extends BaseMapper<Register>  
+1. 创建Mapper接口，在后面使用自动注入的方式使用它，注意这里只是接口，不是创建一个java类，注意接口后还要写extends BaseMapper<Register>， 注意这里使用的是interface而不是class  
 
         @Mapper
         public interface RegisterMapper extends BaseMapper<Register> {
