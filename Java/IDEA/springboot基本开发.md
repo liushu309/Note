@@ -1,3 +1,31 @@
+# 0 常见错误
+## 0.1 java: 警告: 源发行版 17 需要目标发行版 17
+修改三个地方  
+    
+    pom.xml
+    <properties>
+        <java.version>8</java.version>
+    </properties>
+    
+    File->Setting->Build,Execution,Deplyments->Java Compiler
+    Target bytecode version
+             8
+    
+    File-> Project Setting
+       SDK 1.8
+
+    更新maven仓库...
+
+## 0.2 java: 无法访问org.springframework.boot.SpringApplication, 类文件具有错误的版本 61.0, 应为 52.0, 请删除该文件或确保该文件位于正确的类路径子目录中。
+    
+    spring3.0.0以上不支持jdk8，将spring-boot改成2.7.5
+    pom.xml文件
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
 # 1 基本开发
 ## 1.1 配置两个地方
@@ -164,36 +192,6 @@ names    liushu_2
     }
 
     //不仅可以接收User，也可以接收List<User>
-
-
-# 0 常见错误
-## 0.1 java: 警告: 源发行版 17 需要目标发行版 17
-修改三个地方  
-    
-    pom.xml
-    <properties>
-        <java.version>8</java.version>
-    </properties>
-    
-    File->Setting->Build,Execution,Deplyments->Java Compiler
-    Target bytecode version
-             8
-    
-    File-> Project Setting
-       SDK 1.8
-
-    更新maven仓库...
-
-## 0.2 java: 无法访问org.springframework.boot.SpringApplication, 类文件具有错误的版本 61.0, 应为 52.0, 请删除该文件或确保该文件位于正确的类路径子目录中。
-    
-    spring3.0.0以上不支持jdk8，将spring-boot改成2.7.5
-    pom.xml文件
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
     
 # 3 接收上传文件与拦截器
