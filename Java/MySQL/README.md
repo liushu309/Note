@@ -46,3 +46,118 @@ mysql服务没有启动，无法登录，去服务那里启动就可以了。（
 
 ## 3. 关系数据库概念
 1. 外键：外键是指引用另一个表中的一列或多列，被引用的列应该具有主键约束或唯一性约束。在另一个表中当主键的字段。
+##＃ 3.1 连接方式
+join方式：  
+1. 交叉连接（cross join, 笛卡尔积）  
+2. 内连接（inner join）  
+3. 外连接（outerjoin, 包括左连接, 右连接） 
+
+epm_info  
+
+    +------+-------+------+------------+--------+   
+    | id   | name  | age  | address    | salary |  
+    +------+-------+------+------------+--------+  
+    |    1 | Paul  |   32 | California |  20000 |  
+    |    2 | Allen |   25 | Texas      |  15000 |  
+    |    3 | Teddy |   23 | Norway     |  20000 |  
+    |    4 | Mark  |   25 | Rich-Mond  |  65000 |  
+    |    5 | David |   27 | Texas      |  85000 |  
+    |    6 | Kim   |   22 | South-Hall |  45000 |  
+    |    7 | James |   24 | Houston    |  10000 |  
+    +------+-------+------+------------+--------+  
+
+depm_info  
+
+    +------+-------------+--------+  
+    | id   | dept        | emp_id |  
+    +------+-------------+--------+  
+    |    1 | IT Billing  |      1 |  
+    |    2 | Engineering |      2 |  
+    |    3 | Finance     |      7 |  
+    |    4 | 税务        |      2 |  
+    +------+-------------+--------+  
+
+### 1.1 cross join
+生成两张表的笛卡尔积，返回的记录数为两张表记录数的乘积。  
+
+    mysql> select * from emp_info, dept_info;
+    +------+-------+------+------------+--------+------+-------------+--------+
+    | id   | name  | age  | address    | salary | id   | dept        | emp_id |
+    +------+-------+------+------------+--------+------+-------------+--------+
+    |    1 | Paul  |   32 | California |  20000 |    4 | 税务        |      2 |
+    |    1 | Paul  |   32 | California |  20000 |    3 | Finance     |      7 |
+    |    1 | Paul  |   32 | California |  20000 |    2 | Engineering |      2 |
+    |    1 | Paul  |   32 | California |  20000 |    1 | IT Billing  |      1 |
+    |    2 | Allen |   25 | Texas      |  15000 |    4 | 税务        |      2 |
+    |    2 | Allen |   25 | Texas      |  15000 |    3 | Finance     |      7 |
+    |    2 | Allen |   25 | Texas      |  15000 |    2 | Engineering |      2 |
+    |    2 | Allen |   25 | Texas      |  15000 |    1 | IT Billing  |      1 |
+    |    3 | Teddy |   23 | Norway     |  20000 |    4 | 税务        |      2 |
+    |    3 | Teddy |   23 | Norway     |  20000 |    3 | Finance     |      7 |
+    |    3 | Teddy |   23 | Norway     |  20000 |    2 | Engineering |      2 |
+    |    3 | Teddy |   23 | Norway     |  20000 |    1 | IT Billing  |      1 |
+    |    4 | Mark  |   25 | Rich-Mond  |  65000 |    4 | 税务        |      2 |
+    |    4 | Mark  |   25 | Rich-Mond  |  65000 |    3 | Finance     |      7 |
+    |    4 | Mark  |   25 | Rich-Mond  |  65000 |    2 | Engineering |      2 |
+    |    4 | Mark  |   25 | Rich-Mond  |  65000 |    1 | IT Billing  |      1 |
+    |    5 | David |   27 | Texas      |  85000 |    4 | 税务        |      2 |
+    |    5 | David |   27 | Texas      |  85000 |    3 | Finance     |      7 |
+    |    5 | David |   27 | Texas      |  85000 |    2 | Engineering |      2 |
+    |    5 | David |   27 | Texas      |  85000 |    1 | IT Billing  |      1 |
+    |    6 | Kim   |   22 | South-Hall |  45000 |    4 | 税务        |      2 |
+    |    6 | Kim   |   22 | South-Hall |  45000 |    3 | Finance     |      7 |
+    |    6 | Kim   |   22 | South-Hall |  45000 |    2 | Engineering |      2 |
+    |    6 | Kim   |   22 | South-Hall |  45000 |    1 | IT Billing  |      1 |
+    |    7 | James |   24 | Houston    |  10000 |    4 | 税务        |      2 |
+    |    7 | James |   24 | Houston    |  10000 |    3 | Finance     |      7 |
+    |    7 | James |   24 | Houston    |  10000 |    2 | Engineering |      2 |
+    |    7 | James |   24 | Houston    |  10000 |    1 | IT Billing  |      1 |
+    +------+-------+------+------------+--------+------+-------------+--------+
+
+### 1.2 inner join
+生成两张表的交集，返回的记录数为两张表的交集的记录数。 
+
+    mysql> select * from emp_info inner join dept_info on emp_info.id=dept_info.emp_id;
+    +------+-------+------+------------+--------+------+-------------+--------+
+    | id   | name  | age  | address    | salary | id   | dept        | emp_id |
+    +------+-------+------+------------+--------+------+-------------+--------+
+    |    1 | Paul  |   32 | California |  20000 |    1 | IT Billing  |      1 |
+    |    2 | Allen |   25 | Texas      |  15000 |    4 | 税务        |      2 |
+    |    2 | Allen |   25 | Texas      |  15000 |    2 | Engineering |      2 |
+    |    7 | James |   24 | Houston    |  10000 |    3 | Finance     |      7 |
+    +------+-------+------+------------+--------+------+-------------+--------+
+    
+### 1.3 outer join
+1. left join  
+left join(A, B), 返回表A的所有记录，另外表B中匹配的记录有值，没有匹配的记录返回null。 
+ 
+    mysql> select * from emp_info left join dept_info on emp_info.id=dept_info.emp_id;  
+    +------+-------+------+------------+--------+------+-------------+--------+
+    | id   | name  | age  | address    | salary | id   | dept        | emp_id |
+    +------+-------+------+------------+--------+------+-------------+--------+
+    |    1 | Paul  |   32 | California |  20000 |    1 | IT Billing  |      1 |
+    |    2 | Allen |   25 | Texas      |  15000 |    4 | 税务        |      2 |
+    |    2 | Allen |   25 | Texas      |  15000 |    2 | Engineering |      2 |
+    |    3 | Teddy |   23 | Norway     |  20000 | NULL | NULL        |   NULL |
+    |    4 | Mark  |   25 | Rich-Mond  |  65000 | NULL | NULL        |   NULL |
+    |    5 | David |   27 | Texas      |  85000 | NULL | NULL        |   NULL |
+    |    6 | Kim   |   22 | South-Hall |  45000 | NULL | NULL        |   NULL |
+    |    7 | James |   24 | Houston    |  10000 |    3 | Finance     |      7 |
+    +------+-------+------+------------+--------+------+-------------+--------+
+
+
+2. right join(A, B), 返回表B的所有记录，另外表A中匹配的记录有值，没有匹配的记录返回null。 
+ 
+    mysql> select * from emp_info right join dept_info on emp_info.id=dept_info.emp_id;
+
+    +------+-------+------+------------+--------+------+-------------+--------+
+    | id   | name  | age  | address    | salary | id   | dept        | emp_id |
+    +------+-------+------+------------+--------+------+-------------+--------+
+    |    1 | Paul  |   32 | California |  20000 |    1 | IT Billing  |      1 |
+    |    2 | Allen |   25 | Texas      |  15000 |    2 | Engineering |      2 |
+    |    7 | James |   24 | Houston    |  10000 |    3 | Finance     |      7 |
+    |    2 | Allen |   25 | Texas      |  15000 |    4 | 税务        |      2 |
+    +------+-------+------+------------+--------+------+-------------+--------+
+    
+
+
