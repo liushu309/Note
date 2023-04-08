@@ -25,7 +25,7 @@ MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp?
 在<script>标签下，需要导入和注册两个步骤：
 
     <script>
-    // 在对应的文件夹下「导入」组件，components
+    // 1. 在对应的文件夹下「导入」组件，components
     import HelloWorld from './components/HelloWorld.vue'
     // script里面必需要有export。与外面的import是对应的
     export default {
@@ -33,7 +33,7 @@ MVC: M:App{data:{}, function:{}}, V: "el" or "#app", C: Vue，createApp?
       name: 'App',
       // 
       props:['titles']
-      // 注册组件名，已经写好的组件名称
+      // 2. 注册组件名，已经写好的组件名称
       components: {
         HelloWorld
       },
