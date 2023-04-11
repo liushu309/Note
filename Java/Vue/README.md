@@ -145,10 +145,42 @@ Vue适合做单页面的项目，VueRouter用来控制不同组件的显示，�
     npm install vuex@next
 
 ### 8.2 使用
-    每个Vuex核心都是一个store全局对象，主要有5个重要的概念：State, Getter, Mutation, Action, Module.  
-    state： 统一定义公共数据（类似于data(){return {a:1, b:2，xxxxxx}}）
-    mutations ： 使用它来修改数据(类似于methods)
-    getters： 类似于computed(计算属性，对现有的状态进行计算得到新的数据-------派生 )
-    actions： 发起异步请求
-    modules： 模块拆分
+每个Vuex核心都是一个store全局对象  
+
+    // Vue store主要由以下机制组成：
+    // 1. State：存储应用程序的状态数据。
+    // 2. Getters：从state中派生出一些状态，类似于计算属性。
+    // 3. Mutations：修改state的唯一途径，且必须是同步函数。
+    // 4. Actions：用于提交mutations，可以包含任意异步操作。
+    // 5. Modules：将store分割成模块，每个模块拥有自己的state、getters、mutations和actions。
   
+    // 首先，导入Vue和Vuex
+    import Vue from 'vue'
+    import Vuex from 'vuex'
+
+    // 然后，通过调用Vue.use(Vuex)来使用Vuex
+    Vue.use(Vuex)
+
+    // 创建一个新的store实例
+    const store = new Vuex.Store({
+      state: {
+        count: 0
+      },
+      mutations: {
+        increment (state) {
+          state.count++
+        }
+      },
+      actions: {
+        incrementAsync ({ commit }) {
+          setTimeout(() => {
+            commit('increment')
+          }, 1000)
+        }
+      },
+      getters: {
+        doubleCount: state => {
+          return state.count * 2
+        }
+      }
+    })
