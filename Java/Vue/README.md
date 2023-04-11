@@ -184,3 +184,24 @@ Vue适合做单页面的项目，VueRouter用来控制不同组件的显示，�
         }
       }
     })
+
+    // 可以通过调用this.$store从任何组件访问存储
+    // 例如，要增加计数，可以调用this.$store.commit('increment')
+    // 要异步增加计数，可以调用this.$store.dispatch('incrementAsync')
+    // 要获取双倍计数，可以调用this.$store.getters.doubleCount
+
+    // 请注意，mutations必须是同步的，而actions可以是异步的。 
+    // 还要注意，可以使用模块将存储拆分为更小、更可管理的部分。
+
+
+
+    // commit是Vuex中一个用于提交mutation的方法，它的主要作用是修改state中的数据。 
+    // commit接收一个mutation的type作为参数，以及一个可选的payload，它会同步地修改state中的数据。 
+
+    // dispatch是Vuex中一个用于分发action的方法，它的主要作用是触发action中的异步操作，最终提交mutation来修改state。 
+    // dispatch接收一个action的type作为参数，以及一个可选的payload，它会返回一个Promise，可以在异步操作完成后进行处理。 
+
+    // getters是Vuex中一个用于从state中派生出一些状态的方法，类似于计算属性。 
+    // getters接收state作为第一个参数，可以接收其他getter作为第二个参数，以及根state作为第三个参数。 
+    // getters可以被用于计算state的派生状态，以及在组件中进行数据筛选和计算。
+
