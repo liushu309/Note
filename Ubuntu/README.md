@@ -327,7 +327,11 @@ https://blog.csdn.net/starzhou/article/details/105493420
 ## 34. 在目录下查找文件中包含特定内容的位置
 注意：find ./ -name '这里要加引号'  
 
-    grep 'ganmei' `find ./ -name '*.py'`
+    grep 'ganmei' `find ./ -name '*.py'`  
+    // 也可以使用以下的命令
+    // -r: 迭代搜所目录
+    // -n：显示行号
+    grep -rn 'searching code' path
 
 ## 35. tar加密解密
     加密压缩
