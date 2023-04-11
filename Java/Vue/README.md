@@ -205,3 +205,64 @@ Vue适合做单页面的项目，VueRouter用来控制不同组件的显示，�
     // getters接收state作为第一个参数，可以接收其他getter作为第二个参数，以及根state作为第三个参数。 
     // getters可以被用于计算state的派生状态，以及在组件中进行数据筛选和计算。
 
+    // 以下是一个Vue Store中的modules使用例子：
+    const moduleA = {
+      state: { count: 0 },
+      mutations: {
+        increment (state) {
+          state.count++
+        }
+      },
+      actions: {
+        incrementAsync ({ commit }) {
+          setTimeout(() => {
+            commit('increment')
+          }, 1000)
+        }
+      },
+      getters: {
+        doubleCount (state) {
+          return state.count * 2
+        }
+      }
+    }
+
+    const moduleB = {
+      state: { message: 'Hello' },
+      mutations: {
+        updateMessage (state, newMessage) {
+          state.message = newMessage
+        }
+      },
+      actions: {
+        updateMessageAsync ({ commit }, newMessage) {
+          setTimeout(() => {
+            commit('updateMessage', newMessage)
+          }, 1000)
+        }
+      },
+      getters: {
+        upperCaseMessage (state) {
+          return state.message.toUpperCase()
+        }
+      }
+    }
+
+    const store = new Vuex.Store({
+      modules: {
+        a: moduleA,
+        b: moduleB
+      }
+    })
+
+    // 在组件中使用moduleA的双倍计数getter：
+    this.$store.getters['a/doubleCount']
+
+    // 在组件中使用moduleB的大写消息getter：
+    this.$store.getters['b/upperCaseMessage']
+
+    // 在组件中分发moduleA的异步操作：
+    this.$store.dispatch('a/incrementAsync')
+
+    // 在组件中提交moduleB的同步操作：
+    this.$store.commit('b/updateMessage', 'New message')
