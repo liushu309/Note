@@ -4,7 +4,7 @@
 
     # 定义Excel文件路径和关键字列表
     filename = './example.xlsx'
-    keywords = ['印发', '通知', '《']
+    keywords = ['银行', '金融']
 
     # 读取Excel文件
     data = pd.read_excel(filename)
@@ -18,4 +18,5 @@
 
     # 输出筛选后的数据
     print('ret\n', filtered_data)
-    filtered_data.to_excel('output.xlsx', index=False)
+    with pd.ExcelWriter('output.xlsx',engine='xlsxwriter',options={'strings_to_urls': False}) as writer:
+            filtered_data.to_excel(writer, index=False)
