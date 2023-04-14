@@ -22,28 +22,38 @@
             filtered_data.to_excel(writer, index=False)
 
 
-## 2. 对pandas数据的基本操作
-    ```python
+## 2. 对pandas数据的基本操作(增册改查)
     import pandas as pd
 
-    # 假设数据是一个包含字典的列表，每个字典表示一条记录，键表示字段
-    data = [{'name': 'Alice', 'age': 25},
-            {'name': 'Bob', 'age': 30},
-            {'name': 'Charlie', 'age': 35}]
+    # 创建一个DataFrame
+    df = pd.DataFrame({'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 35]})
 
-    # 将数据转换为pandas DataFrame
-    df = pd.DataFrame(data)
+    # 查询数据
+    # 查询所有数据
+    print(df)
+    # 根据列名查询数据
+    print(df['Name'])
+    # 根据行号查询数据
+    print(df.loc[0])
 
-    # 查找年龄大于30的记录
-    result = df[df['age'] > 30]
+    # 增加数据
+    # 增加一行数据
+    df.loc[3] = ['Dave', 40]
+    # 增加一列数据
+    df['Gender'] = ['Female', 'Male', 'Male', 'Male']
 
-    # 输出结果
-    print(result.to_dict('records'))
-    # Output: [{'name': 'Charlie', 'age': 35}]
+    # 修改数据
+    # 修改一行数据
+    df.loc[1] = ['Bobby', 31, 'Male']
+    # 修改一列数据
+    df['Gender'] = ['Female', 'Male', 'Male', 'Female']
+    # 修改某行某列
+    df[0, 'Name'] = 'is you Bob?'
 
-    # 修改名字为Bob的记录的年龄为40
-    df.loc[df['name'] == 'Bob', 'age'] = 40
+    # 删除数据
+    # 删除一行数据
+    df = df.drop(2)
+    # 删除一列数据
+    df = df.drop('Gender', axis=1)
 
-    # 输出修改后的结果
-    print(df.to_dict('records'))
-    # Output: [{'name': 'Alice', 'age': 25}, {'name': 'Bob', 'age': 40}, {'name': 'Charlie', 'age': 35}]
+
