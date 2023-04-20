@@ -286,8 +286,34 @@ Vue适合做单页面的项目，VueRouter用来控制不同组件的显示，�
     console.log(data); 
 
     // 在请求数据时，使用axios或fetch等工具发送请求，并将返回的数据替换为模拟数据即可完成前端mock的使用
-    
-    
 
+### 9.1 Mock.js和XHRHttpRequest的区别
+    Mock.js和XHRHttpRequest在前端开发中有着不同的作用。  
 
+    Mock.js是一款前端数据模拟工具，可以帮助开发者模拟数据接口，快速进行前端开发和调试。而XHRHttpRequest是一个内置的JavaScript函数，用于创建XMLHttpRequest对象，可以向服务器发送HTTP请求并接收响应。通常用于异步数据交换，如使用AJAX技术更新网页内容而不刷新整个页面，从而提高用户体验、性能和响应时间。  
+
+    在实际开发中，我们可以使用Mock.js模拟数据接口，然后使用XHRHttpRequest发送HTTP请求获取模拟数据，从而进行前端开发和调试。这样可以避免直接请求后端接口，提高开发效率和安全性。  
+
+### 9.2 XHRHttpRequest的使用步骤
+    1. 创建一个XHR对象，使用open()方法指定HTTP请求的类型、URL和是否异步处理请求。  
+    2. 发送请求，使用send()方法向服务器发送请求。  
+    3. 监听XHR对象的readyState和status属性变化，以便在接收到响应时采取适当的操作。  
+    4. 处理响应，使用responseText、responseXML或response属性访问服务器响应的数据。  
+
+    // 创建一个XMLHttpRequest对象
+    var xhr = new XMLHttpRequest(); 
+
+    // 指定请求方式和请求地址
+    xhr.open('GET', '/api/data', true);
+
+    // 发送请求
+    xhr.send();
+
+    // 监听请求状态变化
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // 请求成功后的操作
+            console.log(xhr.responseText);
+        }
+    };
 
