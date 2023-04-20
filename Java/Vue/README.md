@@ -301,20 +301,21 @@ Mock.js是一款前端数据模拟工具，可以帮助开发者模拟数据接�
 3. 监听XHR对象的readyState和status属性变化，以便在接收到响应时采取适当的操作。  
 4. 处理响应，使用responseText、responseXML或response属性访问服务器响应的数据。  
 
-    // 创建一个XMLHttpRequest对象
-    var xhr = new XMLHttpRequest(); 
+    
+            // 创建一个XMLHttpRequest对象
+            var xhr = new XMLHttpRequest(); 
 
-    // 指定请求方式和请求地址
-    xhr.open('GET', '/api/data', true);
+            // 指定请求方式和请求地址
+            xhr.open('GET', '/api/data', true);
 
-    // 发送请求
-    xhr.send();
+            // 发送请求
+            xhr.send();
 
-    // 监听请求状态变化
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // 请求成功后的操作
-            console.log(xhr.responseText);
-        }
-    };
+            // 监听请求状态变化
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // 请求成功后的操作
+                    console.log(xhr.responseText);
+                }
+            };
 
