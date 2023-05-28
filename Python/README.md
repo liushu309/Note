@@ -405,3 +405,74 @@ http://t.zoukankan.com/jiliangceshi-p-13220082.html
         smtp.login(sender, psw)     # 登录
         smtp.sendmail(sender, receiver, message.as_string())  # 发送
         smtp.quit()             # 关闭
+
+
+### 14. python线程之间的通信
+threading.Thread(target=, args=, ...)  
+单个变量可以使用锁Lock()，多个变量如数据传输，可以使用单向队列queue.Queue()  
+
+    import queue
+    from time import sleep
+    from random import choice
+    from threading import Thread, Lock
+
+    book_num = 100  # 图书馆最开始有100本图书
+    bookLock = Lock()
+
+    def books_return():
+        global book_num
+        while True:
+            bookLock.acquire()
+            book_num += 1
+            print("归还1本，现有图书{}本".format(book_num))
+            bookLock.release()
+            sleep(1)  # 模拟事件发生周期
+
+
+    def books_lease():
+        global book_num
+        while True:
+            bookLock.acquire()
+            book_num -= 1
+            print("借走1本，现有图书{}本".format(book_num))
+            bookLock.release()
+            sleep(2)  # 模拟事件发生周期
+
+
+    # maxsize小于等于0的时候队列无限大
+    q = queue.Queue(maxsize=5)
+    dealList = ["红烧猪蹄", "卤鸡爪", "酸菜鱼", "糖醋里脊", "九转大肠", "阳春面", "烤鸭", "烧鸡", "剁椒鱼头", "酸汤肥牛", "炖羊肉"]
+
+    def cooking(chefname: str):
+        for i in range(4):
+            deal = choice(dealList)
+            q.put(deal, block=True)
+            print("厨师{}给大家带来一道：{}  ".format(chefname, deal))
+
+
+    def eating(custname: str):
+        for i in range(3):
+            deal = q.get(block=True)
+            print("顾客{}吃掉了：{}  ".format(custname, deal))
+            q.task_done()
+
+
+    if __name__ == "__main__":
+        # 使用锁
+        thread_lease = Thread(target=books_lease)
+        thread_return = Thread(target=books_return)
+        thread_lease.start()
+        thread_return.start()
+
+        # 使用队列
+        # 创建并启动厨师ABC线程，创建并启动顾客1234线程
+        threadlist_chef = [Thread(target=cooking, args=chefname).start() for chefname in ["A", "B", "C"]]
+        threadlist_cust = [Thread(target=eating, args=str(custname)).start() for custname in range(4)]
+        # 队列阻塞，直到所有线程对每个元素都调用了task_done
+        q.join()
+
+
+
+
+
+
