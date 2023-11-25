@@ -115,16 +115,24 @@
 
 ### 4.1 ubuntu开启core文件
     
-    # 1. 开启
+    # 1. root开启(每个shell终端都要重新开启，如果不设置完局的话)
     ulimit -c unlimited 
     ＃ 设置后在ulimit -c 查看，结果为unlimited
     ulimit -c
-    # 以root用户写入
+    
+    # 2. 以root用户写入
     root@ls-pc:echo  "core-%e-%p-%t" > /proc/sys/kernel/core_pattern
     #%e表示可执行程序
     #%p表示进程id
     #%t表示时间
     #这三个参数可加可不加
+
+    3. 以root用户
+    root@ls-pc:./a.out
+
+    4. 在同目录下有core文件出现 
+    root@ls-pc:gdb a.out core-....
+
     
 ### 4.2 gdb调试正在运行的程序
 以root用户进行调试，并且需要多n或者s几下，因为运行的程序可能也有其它的内容，不只是程序代码
