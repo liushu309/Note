@@ -78,6 +78,55 @@
     
   这里考虑的就是a[]中的a应该是数组名类型，而a+1当然指针的话，应该指的下一个数组，而不是下一个.
 
+
+### 3.3 typedef和宏
+
+	#include <stdio.h>
+	
+	// 回调函数原型声明（名称为callback_func）和类型定义
+	typedef void (*callback_func)(int);
+	
+	// 调用函数，接受一个回调函数作为参数
+	void process(int data, callback_func callback)
+	{
+	    // 处理数据
+	    printf("Processing data: %d\n", data);
+	
+	    // 调用回调函数
+	    callback(data);
+	}
+	
+	// 调用函数，接受一个回调函数作为参数
+	void process_no_typedef(int data, void (*callback)(int))
+	{
+	    // 处理数据
+	    printf("Processing no typedef data: %d\n", data);
+	
+	    // 调用回调函数
+	    callback(data);
+	}
+	
+	// 回调函数的实现
+	void my_callback(int data)
+	{
+	    printf("Callback called with data: %d\n", data);
+	}
+	
+	int main()
+	{
+	    // 调用process函数，并传递回调函数
+	    process(10, my_callback);
+	    // 调用process函数，并传递回调函数
+	    process_no_typedef(20, my_callback);
+	
+	    return 0;
+	}
+
+	Processing data: 10
+	Callback called with data: 10
+	Processing no typedef data: 20
+	Callback called with data: 20
+
 ## 4. gdb调试
 ## 常用的命令
     break, run, print expr, c, next, edit, list, step, quit  
