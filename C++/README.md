@@ -126,6 +126,53 @@
 	Callback called with data: 10
 	Processing no typedef data: 20
 	Callback called with data: 20
+ 
+用途：宏定义主要用于文本替换，而typedef主要用于定义数据类型。  
+
+### 3.4 molloc和new的区别 
+
+    malloc和new在内存分配和初始化方面存在一些显著的差异。
+    内存分配方式：malloc在堆上进行内存分配，而new在自由存储区（free store）进行内存分配。自由存储区是C++中通过new和delete动态分配和释放对象的抽象概念。  
+    初始化功能：malloc只负责开辟内存，没有初始化功能，需要用户自己初始化。而new不仅开辟内存，还可以进行初始化，例如，new int(10)表示在堆上开辟了一个4字节的int整形内存，初始值是10。  
+    内存释放：malloc开辟的内存只能通过free来释放，而new开辟的内存，单个元素是使用delete来释放，如果new[]数组，则使用delete[]来释放。  
+    效率：new是关键字，而malloc是库函数，因此new的效率可能高于malloc。  
+    错误检测：对于内存泄漏，malloc无法明确指出是哪个文件的哪一行，而new则可以明确指出。  
+    总的来说，malloc和new在内存分配、初始化、释放、错误检测以及效率方面都有各自的特点和差异。在编程时，需要根据实际需求和情况选择使用。  
+
+    malloc和new都可以用于动态内存分配，但它们在C和C++中的使用方式有所不同。  
+    
+    在C语言中，我们通常使用malloc来分配内存。以下是一个基本的使用示例：  
+
+
+	#include <stdlib.h>  
+  
+	int main() {  
+	    int *ptr = (int*) malloc(sizeof(int));  // 分配一个int大小的内存空间  
+	    if (ptr == NULL) {  
+	        printf("Memory not allocated.\n");  
+	        exit(0);  // 如果内存分配失败，程序退出  
+	    } else {  
+	        *ptr = 10;  // 在分配的内存中存储数据  
+	        printf("Value of ptr: %d\n", *ptr);  // 打印存储的值  
+	        free(ptr);  // 使用完毕后，释放内存  
+	    }  
+	    return 0;  
+	}
+
+
+
+    在C++中，我们通常使用new来分配内存。以下是一个基本的使用示例：  
+    
+	int main() {  
+	    int *ptr = new int;  // 分配一个int大小的内存空间  
+	    *ptr = 10;  // 在分配的内存中存储数据  
+	    std::cout << "Value of ptr: " << *ptr << std::endl;  // 打印存储的值  
+	    delete ptr;  // 使用完毕后，释放内存  
+	    return 0;  
+	}
+ 
+    无论是malloc还是new，都需要进行内存释放操作。对于malloc分配的内存，我们使用free来释放；对于new分配的内存，我们使用delete来释放。  
+
 
 ## 4. gdb调试
 ## 常用的命令
