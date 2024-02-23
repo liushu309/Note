@@ -5,7 +5,8 @@
 信号：singnals(相当于public):函数名（参数类型，不加参数名），只声明，不定义
 槽：（public,private,procte之一） slots:函数名（参数），要定义  
 连接  
-connets(SINGNALS(函数名（参数）），this(发送方），SOLT(函数名（参数）），this?）  
+connect(sender,SIGNAL(signal),receiver,SLOT(slot)，Qt::DirectConnection);  
+连接通常在对象的构造函数中进行，但并非必须如此。  
 发送  
 emit 信息函数（参数）
 ###  Qt5
