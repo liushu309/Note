@@ -14,7 +14,7 @@ emit 信息函数（参数）
 信号：singnals(相当于public):函数名（参数类型，不加参数名），只声明，不定义
 槽：一般的成员函数都可以  
 连接  
-connets(&类名::函数名（参数），this(发送方），&类名::函数名（参数），this?）  
+connect(sender, &SenderClass::signalName, receiver, &ReceiverClass::slotName);  
 发送  
 emit 信息函数（参数）
 
