@@ -1,7 +1,7 @@
 # 配置
 ## 安装glfw和glew
-右键项目->属性-》VC++目录-》包含目录写，库目录写  
-链接器-》输入-》附加依赖项-》glfw3.lib  
+右键项目->属性->VC++目录->包含目录写，库目录写  
+链接器->输入->附加依赖项->glfw3.lib  
 glfw3_mt.lib  
 glfw3dll.lib  
 glew32.lib  
