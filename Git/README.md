@@ -56,10 +56,12 @@
 
 3. 仓库名为包含.git文件夹的上级文件夹的名称，比如
    
-   // git init，仓库的名称就是上级文件夹名称  
-   git remote add origin liushu@192.168.2.7:/D:/Documents/FTP/server  
-   // 如果是git init server，仓库名称就是server.git  
-   git remote add origin liushu@192.168.2.7:/D:/Documents/FTP/server.git  
+    // git init，仓库的名称就是上级文件夹名称  
+    git remote add origin liushu@192.168.2.7:/D:/Documents/FTP/server  
+    // 如果是git init server，仓库名称就是server.git  
+    git remote add origin liushu@192.168.2.7:/D:/Documents/FTP/server.git
+
+4. 拉取的时候，不要直接使用git pull，而是git pull origin master  
 
 ## 4. 概念
 ### 1. git status -s 中的状态字母
