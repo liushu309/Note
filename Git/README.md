@@ -48,7 +48,9 @@
 或者在.git/config文件中添加设置  
 
     [receive]
-            denyCurrentBranch = ignore
+            denyCurrentBranch = ignore  
+            
+因此，当你设置 receive.denyCurrentBranch 为 ignore 时，你实际上是告诉 Git：允许直接推送更新到当前分支，即使这可能会覆盖其他人的工作。这通常用于你控制整个仓库的访问权限，并且确信这样做不会造成问题的情况。然而，在多人协作的项目中，通常建议避免这样做，因为它可能导致数据丢失或混淆。  
             
 2. 在 ~/.ssh/authorized_keys加入访问电脑的id_rsa.pub,或者把id_rsa.pub（推荐重命名一下）放在服务器的~/.ssh目录下。
 
