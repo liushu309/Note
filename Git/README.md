@@ -37,7 +37,7 @@
     git push -u origin master
 
 ## 4. 创建服务器
-1. 创建仓库
+1. 创建仓库（这个服务器里只能保存文件，不能编辑，所以适合至少三个文件夹，一个服务器，两个编辑文件夹）
 
     $ git init --bare liushu.git  
     
