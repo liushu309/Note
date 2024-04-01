@@ -54,6 +54,13 @@
             
 2. 注意：id_rsa.pub 文件不应该直接放在 ~/.ssh/authorized_keys 目录下或 ~/.ssh/ 目录下。实际上，id_rsa.pub 文件中的内容应该被添加到 ~/.ssh/authorized_keys 文件中。
 
+3. 仓库名为包含.git文件夹的上级文件夹的名称，比如
+   
+   // git init，仓库的名称就是上级文件夹名称
+   git remote add origin liushu@192.168.2.7:/D:/Documents/FTP/server
+   // 如果是git init server，仓库名称就是server.git
+   git remote add origin liushu@192.168.2.7:/D:/Documents/FTP/server.git
+
 ## 4. 概念
 ### 1. git status -s 中的状态字母
 新添加的未跟踪文件前面有 ?? 标记，  
