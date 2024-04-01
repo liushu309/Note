@@ -62,7 +62,7 @@
     git remote add origin liushu@192.168.2.7:/D:/Documents/FTP/server.git
 
 4. 拉取的时候，不要直接使用git pull，而是git pull origin master  
-
+5. 在win10上这些可能不成功，在ubuntu上没有问题。
 ## 4. 概念
 ### 1. git status -s 中的状态字母
 新添加的未跟踪文件前面有 ?? 标记，  
