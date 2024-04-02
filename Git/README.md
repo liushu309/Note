@@ -103,6 +103,10 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     echo 'tt*' >> .git/info/sparse-checkout //设置要克隆的仓库的子目录路径   //空格别漏
     git remote add origin git@github.com:mygithub/test.git  //这里换成你要克隆的项目和库
     git pull origin master    //下载
+    第一次pull之后一般要和本地的分支合并之后，才能push
+    合并两个没有共同祖先的分支：在保留分支（master)中运行：git merge remotes/origin/master --allow-unrelated-histories 
+    diff 旧的序列号 新的序列号
+    
 ### 注意
 结果虽然只下载了选定的文件夹，但是可能.git文件还是全部下载下来了，所以存储空间和下载时间基本没有怎么变
 
