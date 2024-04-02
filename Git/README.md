@@ -118,3 +118,31 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
 ## 8. authorized_keys使用注意事项
 1. 该文件用户组权限为读和写，去掉用户组写权限即可。  
 2. 生成密钥的登录用户要保持一致，各服务器的登录用户之间才能免密登录。
+
+## 9. 工程配置
+1. Qt和C++工程
+
+    # Qt 工程相关  
+    *.o  
+    *.moc  
+    Makefile  
+    *.pro.user  
+    *.files  
+    build/  
+    release/  
+    debug/  
+    .qmake.stash  
+    .qmake.cache  
+      
+    # Python 工程相关  
+    **/*.pyc  
+    **/*.pyo  
+    **/test/temp/  
+    **/*.test.log  
+    **/venv/  
+    **/env/  
+    .idea/  
+    .DS_Store  
+    Pipfile.lock  
+    requirements.txt.lock  
+    **/*.mypy_cache/
