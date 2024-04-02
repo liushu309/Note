@@ -61,7 +61,7 @@
     // 如果是git init server，仓库名称就是server.git  
     git remote add origin liushu@192.168.2.7:/D:/Documents/FTP/server.git
 
-4. 拉取的时候，不要直接使用git pull，而是git pull origin master  
+4. 拉取的时候，不要直接使用git pull，而是git pull origin master, 而推送则是git push -u origin master    
 5. 在win10上这些可能不成功，在ubuntu上没有问题。
 ## 4. 概念
 ### 1. git status -s 中的状态字母
