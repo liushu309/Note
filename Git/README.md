@@ -146,3 +146,77 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     Pipfile.lock  
     requirements.txt.lock  
     **/*.mypy_cache/
+
+2. Visual Studio C++工程
+
+    # 忽略编译生成的中间文件、输出文件等  
+    *.obj  
+    *.exe  
+    *.ilk  
+    *.lib  
+    *.pdb  
+    *.pch  
+    *.idb  
+    *.ipdb  
+    *.user  
+    *.aps  
+    *.ncb  
+    *.opt  
+    *.suo  
+    *.tlb  
+    *.tlh  
+    *.bak  
+    *.exp  
+    *.lib  
+    *.sbr  
+    *.pdb  
+    *.ipch/  
+    *.obj/  
+    *.pch  
+    *.vspscc  
+      
+    # 忽略 Visual Studio 解决方案和用户特定的文件  
+    *.sln  
+    *.suo  
+    *.user  
+    *.opensdf  
+    *.sdf  
+    *.cachefile  
+    *.csproj.user  
+    *.vcxproj.user  
+      
+    # 忽略自动生成的依赖项文件  
+    *.dep  
+      
+    # 忽略 IntelliSense 生成的文件  
+    *.i*  
+      
+    # 忽略 NuGet 包目录和文件  
+    packages/  
+    *.nupkg  
+      
+    # 忽略 bin 和 obj 目录（这些通常包含编译生成的文件）  
+    bin/  
+    obj/  
+      
+    # 忽略任何与调试相关的文件或目录  
+    Debug/  
+    Release/  
+    x64/Debug/  
+    x64/Release/  
+    DebugPublic/  
+    ReleasePublic/  
+      
+    # 忽略其他可能自动生成的文件或目录  
+    Generated Files/  
+      
+    # 忽略其他个人或机器特定的文件  
+    *.userosscache  
+    *.browse*  
+    .vs/  
+      
+    # 忽略某些可能包含敏感信息的文件  
+    *.usersecrets  
+      
+    # 如果你使用 Git LFS，可以忽略 Git LFS 跟踪的文件  
+    *.lfs
