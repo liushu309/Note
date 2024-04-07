@@ -283,10 +283,10 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     !liushu/
     # 但是先全部忽略
     liushu/*
+
+    # 第三级文件处理
     # 但不是忽略Test文件夹和目录，注意文件和文件夹都需要，同时，在*/后，liushu文件夹已经被忽略了，所以要加上这个
     !liushu/Test/
-    
-    # 第三级文件处理
     !liushu/Test/**/*
     !liushu/GrooveBox/
     !liushu/GrooveBox/**/*
