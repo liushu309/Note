@@ -243,13 +243,21 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
 
 ## 13. 删除以前的提交记录
 创建一个没有父提交历史记录的孤立分支。这个命令实际上创建了一个新的分支，并且这个分支与以前的历史记录没有任何关联，因此会清空以前的历史记录。  
-    git checkout --orphan
+
+    git checkout --orphan  
 具体来说，git checkout --orphan <branch_name>命令将创建一个新分支 <branch_name>，但是不会将它与任何先前的提交连接起来。这意味着该分支将不会继承任何历史记录，而只会包含当前工作目录中的文件。这可以用于开始一个全新的项目或者重写项目的历史记录。  
+
     git checkout --orphan new_branch_name  
+    
 添加当前状态到新创建的分支，这样新分支将包含你当前的所有文件。  
+
     git add -A  
     git commit -m "Initial commit"  
+    
 如果你想完全移除以前的历史记录，你可以删除之前的其他分支。  
+
     git branch -D old_branch_name  
+    
 如果你之前已经将代码推送到了远程仓库，你可能需要强制推送以覆盖远程仓库的历史记录。  
+
     git push origin new_branch_name --force
