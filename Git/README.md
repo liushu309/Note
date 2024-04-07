@@ -271,3 +271,22 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     !special-folder/  
     !special-folder/**/*
 
+    # 例如
+    # 第一级文件处理
+    */
+    # 第二级文件处理
+    !opengl/
+    !opengl/**/*
+    !network/
+    !network/**/*
+    # 除了liushu这个文件夹之外 
+    !liushu/
+    # 但是先全部忽略
+    liushu/*
+    # 但不是忽略Test文件夹和目录，注意文件和文件夹都需要，同时，在*/后，liushu文件夹已经被忽略了，所以要加上这个
+    !liushu/Test/
+    
+    # 第三级文件处理
+    !liushu/Test/**/*
+    !liushu/GrooveBox/
+    !liushu/GrooveBox/**/*
