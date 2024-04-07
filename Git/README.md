@@ -271,6 +271,8 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     !special-folder/  
     !special-folder/**/*
 
+    # 可以使用git status --ignored查看哪些被忽略了
+
     # 例如
     # 第一级文件处理
     */
