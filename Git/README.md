@@ -261,3 +261,13 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
 如果你之前已经将代码推送到了远程仓库，你可能需要强制推送以覆盖远程仓库的历史记录。  
 
     git push origin new_branch_name --force
+
+## 14. 忽略所有文件但除了某个文件以外
+
+    # 忽略所有文件夹  
+    */  
+      
+    # 但不忽略special-folder及其内容  
+    !special-folder/  
+    !special-folder/**/*
+
