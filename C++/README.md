@@ -306,7 +306,48 @@ public中放接口，private中放内部成员，protected中放虚函数和要�
 1. 含有至少一个纯虚函数的类被称为抽象类，抽象类不能实例化。    
 2. 前面有virsual修饰的就是虚函数  
 3. 在声明中，后面加一个“=0”的是纯虚函数，它没有函数体  
-4. 虚函数最作应用的场景：从一个基类派生出了很多种子类。现在有很多种的子类对象，通过一个for循环它们的对象，如何调用能把它们的同名函数都调用一次（通写基类写一个虚函数，多种子类override，再在调用时，将子类对象强制类型转换成基类对象，这样所有子类就可以以相同的方式调用同名函数）。  
+4. 虚函数最作应用的场景：从一个基类派生出了很多种子类。现在有很多种的子类对象，通过一个for循环它们的对象，如何调用能把它们的同名函数都调用一次（通写基类写一个虚函数，多种子类override，再在调用时，将子类对象强制类型转换成基类对象，这样所有子类就可以以相同的方式调用同名函数）。
+5. 基类定义的非纯的虚函数可以被基类直接访问。函数的访问，同名的函数有三种访问方式，如下：  
+
+		#include <iostream>  
+		using namespace std;
+		
+		// 基类  
+		class Base {
+		public:
+		    // 虚函数  
+		    virtual void showMessage() {
+		        cout << "这是基类的showMessage()" << endl;
+		    }
+		};
+		
+		// 派生类  
+		class Derived : public Base {
+		public:
+		    // 重写基类的虚函数  
+		    void showMessage() override {
+		        cout << "这是派生类的showMessage()" << endl;
+		    }
+		};
+		
+		int main() {
+		    // 创建基类对象并调用虚函数  
+		    Base *baseObj = new Base();
+		    baseObj->showMessage(); // 输出：这是基类的showMessage()  
+		
+		    // 创建派生类对象并调用虚函数  
+		    Derived derivedObj;
+		    derivedObj.showMessage(); // 输出：这是派生类的showMessage()  
+		
+		    // 使用基类指针指向派生类对象，并调用虚函数  
+		    Base* basePtr = &derivedObj;
+		    basePtr->showMessage(); // 输出：这是派生类的showMessage()，动态绑定到派生类的版本  
+		
+		    getchar();
+		    return 0;
+		}
+
+
 
 ## 11. Qt6.0
 1. 从Qt 6.0开始，需要使用C++17标准，升级到Qt 6.2.0后使用VS2019编译项目报错。  
