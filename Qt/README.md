@@ -1,5 +1,5 @@
 ## 1. 信号与槽
-主要有声明，连接，发送  
+### 1. 主要有声明，连接，发送  
 ### Qt4
 声明  
 信号：singnals(相当于public):函数名（参数类型，不加参数名），只声明，不定义
@@ -20,6 +20,20 @@ emit 信息函数（参数）
 注意：  
 1. 信号与槽在connect中的写法，都是写函数名，而不是写函数调用（即后面不要加参数）
 2. 使用自定义的方法，就在头文件中去掉SOLT private:，因为它有可能会自己产生一个信号与槽函数，加上自己连的，一共执行两次槽函数。  
+### 2. 当槽函数为自定义函数的时候
+当槽函数为自定义的时候，类的声明必须继承QObject，而且类发声明中必须包含Q_OBJECT，如下：
+
+    #include <QObject>
+    
+    class BaseClass:public QObject
+    {
+        Q_OBJECT
+    public:
+        BaseClass();
+        virtual int baseVirtualFuction();
+        virtual int basePureVirtual() = 0;
+    };
+
 
 
 
