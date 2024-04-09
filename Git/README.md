@@ -293,3 +293,7 @@ M 有两个可以出现的位置，出现在右边的 M 表示该文件被修改
     !liushu/Test/**/*
     !liushu/GrooveBox/
     !liushu/GrooveBox/**/*
+
+    注意
+    git对文件忽略的时候，**代表任意层路径，而*代表一层路径，所以想忽略对任意temp文件夹的跟踪，可以这样：
+    **/temp/
